@@ -1,7 +1,6 @@
 # granular-machine
 
 Simple web audio granular synthesizer
-One of three projects developed for EP-491
 
 ## about
 
