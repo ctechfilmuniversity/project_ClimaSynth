@@ -23,32 +23,32 @@ var posX, posY;
 ////////////////////////////////////////////////////////////////////////////////
 
 // "loadbang"
-window.onload = function() {
+window.onload = function () {
 
     //web audio setup
     ctx = new (window.AudioContext || window.webkitAudioContext);
 
     //master volume
     master = ctx.createGain();
-        master.connect(ctx.destination);
+    master.connect(ctx.destination);
 
     //create convolution verb
     cVerb = ctx.createConvolver();
-        cVerb.connect(ctx.destination);
+    cVerb.connect(ctx.destination);
 
     //get IR
     irBuff;
     var getIr = new XMLHttpRequest();
-        getIr.open("get", "samples/irs/Space4ArtGallery.wav", true);
-        getIr.responseType = "arraybuffer";
+    getIr.open("get", "samples/irs/Space4ArtGallery.wav", true);
+    getIr.responseType = "arraybuffer";
 
-        getIr.onload = function() {
-            ctx.decodeAudioData(getIr.response, function(buffer) {
-                irBuff = buffer;
-            });
-        };
+    getIr.onload = function () {
+        ctx.decodeAudioData(getIr.response, function (buffer) {
+            irBuff = buffer;
+        });
+    };
 
-        getIr.send();
+    getIr.send();
 
     var sliderRate;
     var sliderAtt;
@@ -58,12 +58,12 @@ window.onload = function() {
     bufferSwitch(0);
 
     var switcher = document.getElementById("buffsel");
-    switcher.addEventListener("input", function() {
+    switcher.addEventListener("input", function () {
         bufferSwitch(switcher.selectedIndex);
     });
 
     //call slider values
-    setInterval( function() {
+    setInterval(function () {
         sliderRate = document.getElementById("density").value;
         rate = parseFloat(sliderRate);
         sliderAtt = document.getElementById("attack").value;
@@ -72,7 +72,7 @@ window.onload = function() {
         dec = parseFloat(sliderDec);
     }, 50);
 
-    document.getElementById('startButton').addEventListener('click', function() {
+    document.getElementById('startButton').addEventListener('click', function () {
         ctx.resume().then(() => {
         });
     });
@@ -83,8 +83,7 @@ window.onload = function() {
 window.addEventListener("scroll", preventMotion, false);
 window.addEventListener("touchmove", preventMotion, false);
 
-function preventMotion(event)
-{
+function preventMotion(event) {
     window.scrollTo(0, 0);
     event.preventDefault();
     event.stopPropagation();
@@ -103,7 +102,7 @@ function setup() {
     gcanvas.class("grainCanvas");
     gcanvas.parent("canvasContainer");
 
-    for (var i = 0; i < windowWidth*1.2; i++) {
+    for (var i = 0; i < windowWidth * 1.2; i++) {
         bg.push(new Clouds());
         bg[i].seed();
     }
@@ -120,7 +119,7 @@ function setup() {
 function draw() {
     //track circle movement
     posX = mouseX;
-    posY = (mouseY*0.9)-(windowHeight*0.1);
+    posY = (mouseY * 0.9) - (windowHeight * 0.1);
 
     clear();
 
@@ -130,7 +129,7 @@ function draw() {
     }
 
     //limit drawing to within canvas
-    if (posX > 0 && posX < windowWidth && posY > windowHeight*0.0005 && posY < windowHeight ) {
+    if (posX > 0 && posX < windowWidth && posY > windowHeight * 0.0005 && posY < windowHeight) {
         if (mouseIsPressed) {
 
             //draw circle when mouse is pressed
@@ -138,18 +137,18 @@ function draw() {
                 dots[i].clicked(mouseX, mouseY, rad, shade);
             }
             grans(posX, posY);
-    }
+        }
 
-    stroke(0);
-    strokeWeight(4);
-    noFill();
-    noStroke();
-    if (rate > 100) {
-        frate = 100;
-    } else {
-        frate = rate;
-    }
-    frameRate(frate);
+        stroke(0);
+        strokeWeight(4);
+        noFill();
+        noStroke();
+        if (rate > 100) {
+            frate = 100;
+        } else {
+            frate = rate;
+        }
+        frameRate(frate);
     }
 }
 
@@ -160,7 +159,7 @@ function windowResized() {
 }
 
 function Circles() {
-    this.clicked = function(x, y, startRad, color) {
+    this.clicked = function (x, y, startRad, color) {
         this.x = x + rand(-30, 30);
         this.y = y + rand(-30, 30);
         fill(color, color, 255, 40);
@@ -172,7 +171,7 @@ function Circles() {
 function rand(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min +1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -195,7 +194,7 @@ function grans(pos, pitch) {
 
     verbLevel.connect(master);
 
-    var gRate = (5.5*(0.8 - (pitch/windowHeight)))+0.5;
+    var gRate = (5.5 * (0.8 - (pitch / windowHeight))) + 0.5;
 
     grain.buffer = audioBuffer;
     len = grain.buffer.duration;
@@ -213,7 +212,7 @@ function grans(pos, pitch) {
     grain.connect(contour);
 
     // grain start point = buf len * mouse position / x dimension + rand
-    grain.start(ctx.currentTime, (len*factor/position)+rand(0,randFactor));
+    grain.start(ctx.currentTime, (len * factor / position) + rand(0, randFactor));
 
     //stop old grains
     grain.stop(ctx.currentTime + (att + dec) + 1);
@@ -224,23 +223,35 @@ function grans(pos, pitch) {
 
 function bufferSwitch(input) {
     var getSound = new XMLHttpRequest();
-        if (input == 0) {
-            getSound.open("get", "samples/audio/SH-el.mp3", true);
-        } else if (input == 1) {
-            getSound.open("get", "samples/audio/guitar.wav", true);
-        } else if (input == 2) {
-            getSound.open("get", "samples/audio/piano+spaceecho.mp3", true);
-        }
-        else {
-            //nothing
-        }
-        getSound.responseType = "arraybuffer";
-        getSound.onload = function() {
-            ctx.decodeAudioData(getSound.response, function(buffer) {
-                audioBuffer = buffer;
-            });
-        };
-        getSound.send();
+    if (input == 0) {
+        getSound.open("get", "samples/audio/birdsnearwater.wav", true);
+    } else if (input == 1) {
+        getSound.open("get", "samples/audio/boatpassing.wav", true);
+    } else if (input == 2) {
+        getSound.open("get", "samples/audio/boatpassinghydrophone.wav", true);
+    }
+    else if (input == 3) {
+        getSound.open("get", "samples/audio/dryleaves.wav", true);
+    }
+    else if (input == 4) {
+        getSound.open("get", "samples/audio/dryleaveseq.wav", true);
+    }
+    else if (input == 5) {
+        getSound.open("get", "samples/audio/riverambiencebirds.wav", true);
+    }
+    else if (input == 6) {
+        getSound.open("get", "samples/audio/riverwater.wav", true);
+    }
+    else {
+        //nothing
+    }
+    getSound.responseType = "arraybuffer";
+    getSound.onload = function () {
+        ctx.decodeAudioData(getSound.response, function (buffer) {
+            audioBuffer = buffer;
+        });
+    };
+    getSound.send();
 }
 
 
@@ -249,8 +260,8 @@ function Clouds() {
     this.y;
 
     this.seed = function () {
-        this.x = randomGaussian(windowWidth/2, windowWidth / 2);
-        this.y = randomGaussian(windowHeight/2, windowHeight / 2);
+        this.x = randomGaussian(windowWidth / 2, windowWidth / 2);
+        this.y = randomGaussian(windowHeight / 2, windowHeight / 2);
     }
 
     this.draw = function () {
