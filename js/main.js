@@ -1,8 +1,3 @@
-//////////////////////
-// Jacob Johnson    //
-// granular-machine //
-//////////////////////
-
 var rad = 15;
 var shade = 150;
 
@@ -121,6 +116,14 @@ function draw() {
     posX = mouseX;
     posY = (mouseY * 0.9) - (windowHeight * 0.1);
 
+    
+    grainsize_x_mapped = map(mouseX, 0, windowWidth, 0.01, 1.00);
+    grainsize_y_mapped = map(posY, 0, windowHeight, 0.01, 1.00);
+    x_mapped = parseFloat(grainsize_x_mapped.toFixed(2));
+    y_mapped = parseFloat(grainsize_y_mapped.toFixed(2));
+    console.log("grainsize x mapped " + x_mapped);
+    console.log("grainsize y mapped " + y_mapped);
+
     clear();
 
     //re-draw border post-grid
@@ -136,7 +139,8 @@ function draw() {
             for (var i = 0; i < dots.length; i++) {
                 dots[i].clicked(mouseX, mouseY, rad, shade);
             }
-            grans(posX, posY);
+            //grans(posX,posY);
+            grans(posX, posY, x_mapped, y_mapped);
         }
 
         stroke(0);
@@ -176,7 +180,7 @@ function rand(min, max) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-function grans(pos, pitch) {
+function grans(pos, pitch, grain_x_mapped, grain_y_mapped) {
 
     var grain = ctx.createBufferSource();
     var contour = ctx.createGain();
@@ -184,8 +188,10 @@ function grans(pos, pitch) {
     var len, factor, position, randFactor;
 
     contour.gain.setValueAtTime(0, ctx.currentTime);
-    contour.gain.linearRampToValueAtTime(0.6 * rand(0.5, 1), ctx.currentTime + att);
-    contour.gain.linearRampToValueAtTime(0, ctx.currentTime + (att + dec));
+    //contour.gain.linearRampToValueAtTime(0.6 * rand(0.5, 1), ctx.currentTime + att);
+    //contour.gain.linearRampToValueAtTime(0, ctx.currentTime + (att + dec));
+    contour.gain.linearRampToValueAtTime(0.6 * rand(0.5, 1), ctx.currentTime + grain_x_mapped);
+    contour.gain.linearRampToValueAtTime(0, ctx.currentTime + (grain_x_mapped + grain_y_mapped));
 
     contour.connect(verbLevel);
     contour.connect(master);
@@ -194,14 +200,15 @@ function grans(pos, pitch) {
 
     verbLevel.connect(master);
 
-    var gRate = (5.5 * (0.8 - (pitch / windowHeight))) + 0.5;
+    var gRate = (2.5 * (0.8 - (pitch / windowHeight))) + 0.5;
 
     grain.buffer = audioBuffer;
     len = grain.buffer.duration;
-    factor = pos;
+    factor = 100;
     position = windowWidth;
     randFactor = 10;
 
+    grainsize = map(pos, 0, windowWidth, 0.01, 1.00);
 
     if (gRate < 1) {
         grain.playbackRate.value = 0.5;
@@ -213,9 +220,11 @@ function grans(pos, pitch) {
 
     // grain start point = buf len * mouse position / x dimension + rand
     grain.start(ctx.currentTime, (len * factor / position) + rand(0, randFactor));
+    console.log("start  "+ (len * factor / position) + rand(0, randFactor));
 
     //stop old grains
-    grain.stop(ctx.currentTime + (att + dec) + 1);
+    //grain.stop(ctx.currentTime + (att + dec) + 1);
+    grain.stop(ctx.currentTime + (grain_x_mapped + grain_y_mapped) + 1);
 
 
     //grain enveloping and verb
@@ -267,7 +276,7 @@ function Clouds() {
     this.draw = function () {
         noStroke();
         fill(150, 50)
-        ellipse(this.x, this.y, 100, 100);
+        ellipse(this.x, this.y, 50, 50);
     }
 }
 
