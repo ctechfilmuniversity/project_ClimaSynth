@@ -1,5 +1,14 @@
-Develop scenes according to sound recordings, climate scenarios and storytelling: each scene as a chapter (explore different locations and mic types)
-MaxMSP app documentation + presentation mode (user testing - computer/phone via OSC?)
-Max/js/WebAudio connections
-Map interface + connection with synth
-Publication plan (conference paper/demo)
+# Prototype Development
+
+- Develop scenes according to sound recordings, climate scenarios and storytelling: each scene as a chapter (explore different locations and mic types) (Eleni)
+- MaxMSP app documentation + presentation mode (user testing - computer/phone via OSC?) (Danylo)
+- Max/js/WebAudio connections (Danylo)
+- Map interface + connection with synth
+
+# Dissemination
+
+- Publication plan (conference paper/demo)
+
+# Funding
+- DATIpilot
+- IKF 
