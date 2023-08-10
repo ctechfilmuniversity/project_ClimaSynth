@@ -1,0 +1,4 @@
+/1, name /1 coords 0.804242 0.695423 rgb 0.5 0.5 0.5 inner_radius 0.05 outer_radius 0.2;
+/0, name /0 coords 0 0 rgb 0.5 0.5 0.5 inner_radius 0.05 outer_radius 0.2;
+/3, name /3 coords 0.373047 0.367188 rgb 0.736513 0.263487 0.263487 inner_radius 0.05 outer_radius 0.2;
+/4, name /4 coords 0.770853 0.161198 rgb 0.303513 0.310003 0.696487 inner_radius 0.05 outer_radius 0.2;
