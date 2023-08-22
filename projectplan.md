@@ -11,6 +11,10 @@
 # Dissemination
 
 - Publication plan (conference paper/demo)
+  * MMM2024 (deadline Demo papers 2 October 2023)
+  * Audio Mostly 2024 (deadline TBA)
+  * NIME2024 (deadline TBA)
+  * International Computer Music Conference 2024 (deadline TBA)
 
 # Funding
 - DATIpilot
