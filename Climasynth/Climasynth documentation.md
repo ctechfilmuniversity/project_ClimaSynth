@@ -1,17 +1,14 @@
 Overview
 
-Nebulizer is a poly-voice granular synthesizer, written in MAX/MSP language.
-Its design leverages the polyphony to achieve dense sound textures (nebulas) out of any user-defined sound sample. The workflow of Nebulizer is focused on providing an artist with a minimalistic, yet real-time performance-friendly UI.
-Its workflow mainly consists of pre-programming synthesis parameters' presets and then using the so-called RBFI-plane-widget to interpolate between pre-created samples. 
-Standalone version allows creating, saving and loading projects and scenes within them.
-
-It's workflow was designed with both content creator and an end users without musical/programmatical background in mind, just as the Climasynth app implies.  
+Climasynth is a poly-voice granular synthesizer developed in MAX/MSP.
+Its design builds on Danylo Okulov's Nebulizer, which leverages the polyphony to achieve dense sound textures (nebulas) out of any user-defined sound sample. The workflow provides a minimalistic, yet real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameters' presets and then using the RBFI-plane-widget to interpolate between them. 
+The standalone version allows creating, saving and loading projects and scenes within them. It is designed with both content creator and an end users without musical/programmatical background in mind.  
 
 Development and design 
 
 Originally designed as an internal sound deign tool for synthesis of sound textures from field recordings and musical material, Nebulizer was further developed into the creator-and-user-friendly instrument with two challenges in mind: 
 1. The content creator has to be able to pre-program (as intuitively as possible) the instrument for the public to explore the pre-programmed content. 
-2. The public ideally has no particular target category. A person with complete absence of understanding about the granular synthesis has to be able to explore the content. 
+2. The user ideally has no particular target category. A person with no expert background about the granular synthesis has to be able to explore the content. 
 
 The key solution was the implementation of the Radial Base Function Interpolation as the UI environment for exploring the content:
 
@@ -56,18 +53,18 @@ The UI is split into the following parts:
 
 Synthesis
 
-In Nebulizer the sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm. Each instances' parameters have dedicated controls, exposed to the content creator. 
+The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm. Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
 <parameters are written  in all caps>
 
 1. Pick a random starting point within RANGE on the SAMPLE
-2. Play it back for the duration LENGTH with a SPEED. 
+2. Play it back for the duration LENGTH with a SPEED 
 3. Apply pitch shift by PITCH
 4. Window the signal with ENVELOPE curve
 5. Repeat with the PERIOD
 	
-
+(Danylo: It would be very useful to know exactly what each of the parameters do - screenshots of the different presets would also help here)
 
 
 
