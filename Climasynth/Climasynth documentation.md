@@ -1,6 +1,6 @@
 # Overview
 
-Climasynth is a poly-voice granular synthesizer developed in MAX/MSP.
+Climasynth is a poly-voice granular synthesizer developed in MAX/MSP. It creates an interplay between the processing of recorded sounds and climate scenarios.
 Its design builds on Danylo Okulov's Nebulizer, which leverages the polyphony to achieve dense sound textures (nebulas) out of any user-defined sound sample. The workflow provides a minimalistic, yet real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane-widget to interpolate between them. 
 The standalone version allows creating, saving and loading projects and scenes within them. It is designed with both content creator and an end users without musical/programmatical background in mind.  
 
@@ -14,9 +14,9 @@ The key solution was the implementation of the Radial Base Function Interpolatio
 
  - The creator programs the content in the form of synthesis parameters presets. 
  - The presets are then placed on a two-dimensional plane in a deliberate manner. 
- - The end-user 'travels' through the plane with the cursor
+ - The end-user 'travels' through the plane with the cursor.
  - Depending on the proximity of the cursor to each preset's point, the weights for the presets are calculated by the Radial Basis Function.
- - Synthesis parameters are then tuned according to the weighted sum of preset values
+ - Synthesis parameters are then tuned according to the weighted sum of preset values.
 
 This approach not only allows to condense the parameter space for the end user down to just two axes, but also creates a seamless space of synthesis settings, which in its turn allows smooth transition between pre-programmed states. 
 
@@ -33,7 +33,8 @@ The UI is split into the following parts:
     Create, save and load project files.
     
 -  Scene management 
-	Create and store scenes within the project. 
+	Create and store scenes within the project.
+	Scenes correspond to a sound file and relate to a climate scenario.
 	A single scene is comprised of the set of synthesis parameter presets and is tied to one sound sample. By now scenes are automatically named after their corresponding sound files.   
 	
 -  RBFI-plane and preset management
