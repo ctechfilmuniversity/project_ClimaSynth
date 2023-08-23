@@ -6,7 +6,7 @@ The standalone version allows creating, saving and loading projects and scenes w
 
 # Development and design 
 
-Originally designed as an internal sound deign tool for synthesis of sound textures from field recordings and musical material, Nebulizer was further developed into the creator-and-user-friendly instrument with two challenges in mind: 
+Based on Nebulizer, originally designed as an internal sound deign tool for synthesis of sound textures from field recordings and musical material, it was further developed into a creator-and-user-friendly instrument with two challenges in mind: 
 1. The content creator has to be able to pre-program (as intuitively as possible) the instrument for the public to explore the pre-programmed content. 
 2. The user ideally has no particular target category. A person with no expert background about the granular synthesis has to be able to explore the content. 
 
