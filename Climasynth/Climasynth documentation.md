@@ -1,7 +1,7 @@
 # Overview
 
 Climasynth is a poly-voice granular synthesizer developed in MAX/MSP.
-Its design builds on Danylo Okulov's Nebulizer, which leverages the polyphony to achieve dense sound textures (nebulas) out of any user-defined sound sample. The workflow provides a minimalistic, yet real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameters' presets and then using the RBFI-plane-widget to interpolate between them. 
+Its design builds on Danylo Okulov's Nebulizer, which leverages the polyphony to achieve dense sound textures (nebulas) out of any user-defined sound sample. The workflow provides a minimalistic, yet real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane-widget to interpolate between them. 
 The standalone version allows creating, saving and loading projects and scenes within them. It is designed with both content creator and an end users without musical/programmatical background in mind.  
 
 # Development and design 
