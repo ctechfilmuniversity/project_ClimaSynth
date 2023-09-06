@@ -6,7 +6,7 @@ The standalone version allows creating, saving and loading projects and scenes w
 
 # Development and design 
 
-Climasynth was developed into a creator-and-user-friendly instrument with two challenges in mind: 
+The following challenges guided the development and design of Climasynth as a creator-and-user-friendly instrument: 
 1. The content creator has to be able to pre-program (as intuitively as possible) the instrument for the public to explore the pre-programmed content. 
 2. The user ideally has no particular target category. A person with no expert background about the granular synthesis has to be able to explore the content. 
 
