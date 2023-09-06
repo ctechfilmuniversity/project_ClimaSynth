@@ -47,7 +47,7 @@ The UI is split into the following parts:
    
 -  Synthesis parameters programming section
 	Here the content creator inputs parameters for the synthesizer. 
-	RANGE, LENGTH, SPEED, and PITCH can be controlled for each voice individually, while ENVELOPE curve is global for all voices. RENGE selection allows a single global or three different selections. 
+	RANGE, LENGTH, SPEED, and PITCH can be controlled for each voice individually, while ENVELOPE curve is global for all voices. RANGE selection allows a single global or three different selections. 
 	
 -  Audio output controls 
 	Output gain controls, audio driver selection and toggle, global activation toggle for all voices   
