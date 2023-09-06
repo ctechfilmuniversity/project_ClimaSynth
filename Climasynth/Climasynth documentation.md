@@ -1,6 +1,6 @@
 # Overview
 
-Climasynth is a granular synthesis application developed in MaxMSP. It creates an interplay between the processing of field recordings and climate scenarios.
+Climasynth is a granular synthesis application originally developed in MaxMSP. The application creates an interplay between the processing of field recordings and climate scenarios related to the research project [Listening to Climate Change](https://www.filmuniversitaet.de/forschung-transfer/forschung/projekte/projektseite/detail/listening-to-climate-change-the-role-of-sound-and-new-media-formats-for-enhancing-environmental-perception) undertaken by Dr. Eleni-Ira Panourgia at Film University Babelsberg KONRAD WOLF with guidance and mentorship from Prof. Dr. Angela Brennecke and funded with an Individual Grant by Postdoc Network Brandenburg.
 Its design builds on Danylo Okulov's Nebulizer, a poly-voice granular synthesizer originally developed as an internal sound deign tool for synthesis of sound textures leveraging the polyphony to achieve dense sound textures (nebulas) out of any selected sound sample. The workflow provides a minimalistic, real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane-widget to interpolate between them. 
 The standalone version allows creating, saving and loading projects and scenes within them. It was designed with both content creator and an end users without musical/programmatical background in mind.  
 
