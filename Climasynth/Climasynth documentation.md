@@ -47,15 +47,15 @@ The UI is split into the following parts:
 	  
    
 -  Synthesis parameters programming section
-	Here the content creator inputs parameters for the synthesizer. 
+	Here the content creator inputs parameters for the synthesizer drawing from Nebulizer's interface. 
 	RANGE, LENGTH, SPEED, and PITCH can be controlled for each voice individually, while ENVELOPE curve is global for all voices. RANGE selection allows a single global or three different selections. 
 	
 -  Audio output controls 
-	Output gain controls, audio driver selection and toggle, global activation toggle for all voices   
+	Output gain controls, audio driver selection and toggle, global activation toggle for all voices.    
 
 # Synthesis
 
-The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm. Each instances' parameters have dedicated controls, exposed to the content creator. 
+The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm (could you say more about this and if it is the same as Nebulizer refer to it?). Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
 <parameters are written  in all caps>
