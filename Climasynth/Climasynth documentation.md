@@ -55,7 +55,7 @@ The UI is split into the following parts:
 
 # Synthesis
 
-The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm (could you say more about this and if it is the same as Nebulizer refer to it?). Each instances' parameters have dedicated controls, exposed to the content creator. 
+The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm (Danylo: could you say more about this?). Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
 <parameters are written  in all caps>
@@ -66,7 +66,7 @@ The synthesis algorithm of a single instance looks as follows:
 4. Window the signal with ENVELOPE curve
 5. Repeat with the PERIOD
 	
-(Danylo: It would be very useful to know exactly what each of the parameters do - screenshots of the different presets would also help here)
+(Danylo: It would be very useful to know exactly what each of the parameters do and the values i.e., ms, grain size, pitch range, octaves/semi-tones/Hz, etc. - screenshots of the different presets would also help here)
 
 
 
