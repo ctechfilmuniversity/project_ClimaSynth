@@ -11,9 +11,8 @@
 # Dissemination
 
 - Publication plan (conference paper/demo)
-  * MMM2024 (deadline Demo papers 2 October 2023)
   * Audio Mostly 2024 (deadline TBA)
-  * [NIME2024](https://www.nime2024.org/) (deadline 31.01)
+  * [NIME2024](https://www.nime2024.org/) (deadline 31.01.2024)
   * International Computer Music Conference 2024 (deadline TBA)
   * xCoAx 2024 (deadline TBA)
 
