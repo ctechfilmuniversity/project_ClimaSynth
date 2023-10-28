@@ -11,10 +11,11 @@
 # Dissemination
 
 - Publication plan (conference paper/demo)
+  * [NIME2024](https://www.nime2024.org/) September 4-6, 2024 Utrecht (deadline 31.01.2024)
   * Audio Mostly 2024 (deadline TBA)
-  * [NIME2024](https://www.nime2024.org/) (deadline 31.01.2024)
   * International Computer Music Conference 2024 (deadline TBA)
   * xCoAx 2024 (deadline TBA)
+  * [Urban Sound Symposium](https://urban-sound-symposium.org/) April 28-30, 2025 Zurich (deadline TBA)
 
 # Funding
 - DATIpilot
