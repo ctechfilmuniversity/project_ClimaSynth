@@ -2,7 +2,7 @@
 
 Climasynth is a granular synthesis application originally developed in MaxMSP for processing field recordings in relation to climate scenarios. The application is part of the research project [Listening to Climate Change](https://www.filmuniversitaet.de/forschung-transfer/forschung/projekte/projektseite/detail/listening-to-climate-change-the-role-of-sound-and-new-media-formats-for-enhancing-environmental-perception) undertaken by Dr. Eleni-Ira Panourgia at Film University Babelsberg KONRAD WOLF with guidance and mentorship from Prof. Dr. Angela Brennecke and funded with an Individual Grant by Postdoc Network Brandenburg. The development work is realized by Danylo Okulov.  
 
-The design of Climasynth builds on Okulov's Nebulizer, a poly-voice granular synthesizer originally developed as an internal sound deign tool for synthesis of sound textures, leveraging the polyphony to achieve dense sound textures (nebulas) out of any selected sound sample. The workflow provides a minimalistic, real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane-widget to interpolate between them. 
+The design of Climasynth builds on Okulov's Nebulizer, a poly-voice granular synthesizer originally developed as an internal sound deign tool for synthesis of sound textures, leveraging the polyphony to achieve dense sound textures (nebulas) out of any selected sound sample. The workflow provides a minimalistic, real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane widget to interpolate between them. 
 The standalone version allows creating, saving and loading projects and scenes within them. It was designed with both content creator and an end users without musical/programmatical background in mind.  
 
 # Development and design 
@@ -55,18 +55,30 @@ The UI is split into the following parts:
 
 # Synthesis
 
-The sound texture density is achieved by running multiple instances (voices) of a relatively simple granular synthesis algorithm (Danylo: could you say more about this?). Each instances' parameters have dedicated controls, exposed to the content creator. 
+We've chosen to work with granular synthesis because to it's tonal capabilities and also due to the fact, that it primarily uses pre-recorded sound samples to generate from. 
+At it's core this method is based on taking very short (1-100ms) pieces of a sample (a.k.a. 'grains') and playing them back next to each other. The output is often referred to as 'nebula' is a dense cloud of short fragments of sound whith some portion of the original tone texture presserved, although heavily altered and often smeared into one continuous cloud of sound. 
+This made a perfect base for both working with sample-basaed input material and morphing one sounds into another. 
+In Climasynth's algorhythm we tke advantage of polyphonic synthesis and run mmultiple instances of granular synthesizer module using the same sample for all instances with different parameter settings. 
+The polyphonic approach and the ability to 'ganulate' samples in parallel has also pushed us towards choosing wider than typical parameter ranges, going up to max 2000 milliseconds per 'grain'. 
+Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
-<parameters are written  in all caps>
+(Parameters in all caps, their ranges - in brackets)
 
-1. Pick a random starting point within RANGE on the SAMPLE
-2. Play it back for the duration LENGTH with a SPEED 
-3. Apply pitch shift by PITCH
+1. Pick a random starting point within a user-set time RANGE on the input SAMPLE
+2. Play it back for the duration LENGTH (fraction of the PERIOD time) with a SPEED (0 to +/-3 times normal speed)
+3. Apply pitch shift by PITCH (+/- 3 semitones)
 4. Window the signal with ENVELOPE curve
-5. Repeat with the PERIOD
-	
-(Danylo: It would be very useful to know exactly what each of the parameters do and the values i.e., ms, grain size, pitch range, octaves/semi-tones/Hz, etc. - screenshots of the different presets would also help here)
+5. Repeat with the PERIOD (0ms-2000ms)
+
+SAMPLE: pre-recorded sound file. 
+RANGE: time range in millisecons within the input sample's original full length. Two values - start and end points in  milliseconds. 
+LENGTH: a number of 0.0 to 1.0, representing the fraction of the PERIOD.  
+PERIOD: time period 0 to 2000 milliseconds, the synthesiser will pick a new starting point and play a 'grain'. 
+SPEED: a multiple of speed the sample material to be played with. Ranges within -3 to 3, negative nubers beeing reverse playback speed. 
+PITCH: output pitch shift value in range of -3 to 3 semitones
+ENVELOPE: a function curve, that drives the end volume of the grain in time.
+
 
 
 
