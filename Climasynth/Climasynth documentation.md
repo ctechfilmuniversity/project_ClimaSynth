@@ -55,11 +55,9 @@ The UI is split into the following parts:
 
 # Synthesis
 
-We've chosen to work with granular synthesis because to it's tonal capabilities and also due to the fact, that it primarily uses pre-recorded sound samples to generate from. 
-At it's core this method is based on taking very short (1-100ms) pieces of a sample (a.k.a. 'grains') and playing them back next to each other. The output is often referred to as 'nebula' is a dense cloud of short fragments of sound whith some portion of the original tone texture presserved, although heavily altered and often smeared into one continuous cloud of sound. 
-This made a perfect base for both working with sample-basaed input material and morphing one sounds into another. 
-In Climasynth's algorhythm we tke advantage of polyphonic synthesis and run mmultiple instances of granular synthesizer module using the same sample for all instances with different parameter settings. 
-The polyphonic approach and the ability to 'ganulate' samples in parallel has also pushed us towards choosing wider than typical parameter ranges, going up to max 2000 milliseconds per 'grain'. 
+Granular synthesis uses pre-recorded sound samples to generate new sound materials from very short (1-100ms) parts of a sample or 'grains' played back next to each other. The output often referred to as 'nebula' is a dense cloud of short fragments of sound whith some portion of the original tone texture presserved, although heavily altered and often smeared into one continuous cloud of sound. 
+This creates a perfect base for both working with sample-basaed input material and morphing sounds into one another. 
+In Climasynth's algorhythm we tke advantage of polyphonic synthesis and run mmultiple instances of the granular synthesizer module using the same sample with different parameter settings. The polyphonic approach and the ability to 'ganulate' samples in parallel has also pushed us towards choosing wider than typical parameter ranges, going up to max 2000 milliseconds per 'grain'. 
 Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
