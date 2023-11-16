@@ -11,7 +11,7 @@
 # Dissemination
 
 - Publication plan (conference paper/demo)
-  * [NIME2024](https://www.nime2024.org/) September 4-6, 2024 Utrecht (deadline 31.01.2024)
+  * [NIME2024](https://www.nime2024.org/) September 4-6, 2024 Utrecht (deadline 31.01.2024, upload paper by 7.02.2024)
   * [DAFx24](https://dafx24.surrey.ac.uk/call-for-papers/) September 3-7, Surrey (deadline 20.03.2024)
   * [xCoAx 2024](https://xcoax.org/) 10–12 July Fabrica, Treviso, Italy (deadline 31.01.2024)
   * Audio Mostly 2024, University of Milan, Italy (deadline TBA)
