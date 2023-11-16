@@ -13,7 +13,7 @@
 - Publication plan (conference paper/demo)
   * [NIME2024](https://www.nime2024.org/) September 4-6, 2024 Utrecht (deadline 31.01.2024)
   * [DAFx24](https://dafx24.surrey.ac.uk/call-for-papers/) September 3-7, Surrey (deadline 20.03.2024)
-  * Audio Mostly 2024 (deadline TBA)
+  * Audio Mostly 2024, University of Milan, Italy (deadline TBA)
   * International Computer Music Conference 2024 (deadline TBA)
   * xCoAx 2024 (deadline TBA)
   * [Urban Sound Symposium](https://urban-sound-symposium.org/) April 28-30, 2025 Zurich (deadline TBA)
