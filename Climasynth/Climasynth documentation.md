@@ -11,7 +11,7 @@ The following challenges guided the development and design of Climasynth as a cr
 1. The content creator has to be able to pre-program (as intuitively as possible) the instrument for the public to explore the pre-programmed content. 
 2. The user ideally has no particular target category. A person with no expert background about the granular synthesis has to be able to explore the content. 
 
-The key solution was the implementation of the Radial Base Function Interpolation as the UI environment for exploring the content:
+The key solution was the implementation of the Radial Basis Function Interpolation as the UI environment for exploring the content:
 
  - The creator programs the content in the form of synthesis parameters presets. 
  - The presets are then placed on a two-dimensional plane in a deliberate manner. 
