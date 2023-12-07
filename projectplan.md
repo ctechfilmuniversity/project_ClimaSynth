@@ -8,6 +8,7 @@
 **Final version:**
 - Option to record and download sound file (Danylo)
 - Pop-up map/visual interface + connection with synth
+- [UX Miro] (https://miro.com/app/board/uXjVNFCPU2I=/?share_link_id=917777099380)
 
 # Dissemination
 
