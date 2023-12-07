@@ -1,12 +1,13 @@
 # Prototype Development
 
-*January version* (ready by 12 January 2024):
+**January version (ready by 12 January 2024):**
 - Develop scenes according to sound recordings, climate scenarios and storytelling: each scene as a chapter (explore different locations and mic types) (Eleni)
   * Environmental sonic states based on: listening perspectives (i.e., from within plants, landscape overviews), shifting frequencies (i.e., pitch variations/biodiversity), other temporalities (i.e., stretched or accelerated time), states of matter (i.e., wet/dry, liquid/solid contrasts) 
 - Functioning prototype hosted online on Github for alpha testing (Danylo), questionnaire and organization (Eleni): 17.01 Pitching and Peer-Review Creative Technologies
-*Final version*:
-- Option to record in app (Danylo)
-- Map/visual interface + connection with synth
+
+**Final version:**
+- Option to record and download sound file (Danylo)
+- Pop-up map/visual interface + connection with synth
 
 # Dissemination
 
