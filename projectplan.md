@@ -13,6 +13,7 @@
 # Dissemination
 
 - Publication plan (conference paper/demo)
+  * [Web Audio Conference (WAC) 2024](https://www.cla.purdue.edu/academic/rueffschool/music/events/conferences-festivals/wac-24/wac-24.html) March 15-18, 2024 West Lafayette, Indiana (deadline 14.01.2024) 
   * [NIME2024](https://www.nime2024.org/) September 4-6, 2024 Utrecht (deadline 31.01.2024, upload paper by 7.02.2024)
   * [DAFx24](https://dafx24.surrey.ac.uk/call-for-papers/) September 3-7, Surrey (deadline 20.03.2024)
   * [xCoAx 2024](https://xcoax.org/) 10–12 July Fabrica, Treviso, Italy (deadline 31.01.2024)
