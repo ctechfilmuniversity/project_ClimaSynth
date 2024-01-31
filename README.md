@@ -1,1 +1,1 @@
-# xy-grainsynth
+# ClimaSynth Web Prototype
