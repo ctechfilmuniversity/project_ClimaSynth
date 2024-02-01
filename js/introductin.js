@@ -47,7 +47,7 @@ const tour = new Shepherd.Tour({
     title: "How to play: ",
     text: `
     <p>
-    1. Select a recording from the drop down menu and read its description.
+    1. Select a recording from the drop down menu and read the scenario.
     </p>
     <br/>
     <p>
@@ -55,7 +55,7 @@ const tour = new Shepherd.Tour({
     </p>
     <br/>
     <p>
-    3. Perform gestures on the visual surface and change spread values to manipulate the recording.
+    3. Perform gestures on the visual surface and play with the 'spread' and 'area' sliders to manipulate the recording.
     </p>
     <br/>
     <p>
