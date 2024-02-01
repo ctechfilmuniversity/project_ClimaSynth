@@ -13,7 +13,7 @@
   spread: 0,
   pitch: 1,
   areas: 3,
-  description : "bird voices are fading out and are replaced by insects"
+  description : "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
   };
 
 
