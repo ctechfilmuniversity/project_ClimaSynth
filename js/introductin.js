@@ -21,7 +21,7 @@ const tour = new Shepherd.Tour({
     Field recordings from Potsdam, Germany are linked to drought effects on landscapes and ecosystems.
     </p>
     <p>
-    Their stories are told from a non-human perspective through the voices of a river, birds and trees.
+    Their stories can be explored from a non-human perspective through the voices of a river, birds and trees.
     </p>`,
     buttons: [
       {
@@ -47,15 +47,15 @@ const tour = new Shepherd.Tour({
     title: "How to play: ",
     text: `
     <p>
-    1. Select a recording from the drop down menu and read its description
+    1. Select a recording from the drop down menu and read its description.
     </p>
     <br/>
     <p>
-    2. Use mouse or touch to slowly interact with different environmental states represented by different visual densities
+    2. Use mouse or touch to slowly interact with different environmental states represented by different visual densities.
     </p>
     <br/>
     <p>
-    3. Perform gestures on the visual surface and change spread values to manipulate the recording
+    3. Perform gestures on the visual surface and change spread values to manipulate the recording.
     </p>
     <br/>
     <p>
