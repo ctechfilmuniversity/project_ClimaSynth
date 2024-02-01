@@ -63,7 +63,8 @@ const PARAMS = {
     }
   });
   */
-  
+  pane.addSeparator();
+
   const cInput = pane.addInput(PARAMS, 'areas', { min: 1, max: 7, step: 1 });
   cInput.on('change', function (ev) {
     areas = parseInt(ev.value);
@@ -77,6 +78,7 @@ const PARAMS = {
   });
   */
   
+  pane.addSeparator();
 
   const sprInput = pane.addInput(PARAMS, 'spread', { min: 0, max: 10, step: 1 });
   sprInput.on('change', function (ev) {
