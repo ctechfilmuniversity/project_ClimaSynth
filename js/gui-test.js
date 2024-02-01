@@ -39,15 +39,15 @@
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
   if (ev.value == 0) {
-    PARAMS.description = "bird voices are fading out and are replaced by insects";
+   description : "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
     bufferSwitch(0);
     }
   if (ev.value == 1) {
-    PARAMS.description = "river flows are shrinking and moving differently as they are drying out";
+    PARAMS.description = "river flows are shrinking"+'\n'+" and moving differently "+'\n'+"as they are drying out";
     bufferSwitch(1);
     }
   if (ev.value == 2) {
-    PARAMS.description = "tree barks are becoming warmer, drier and less flexible";
+    PARAMS.description = "tree barks are becoming warmer,"+'\n'+" drier and less flexible";
     bufferSwitch(2);
     }
   });
