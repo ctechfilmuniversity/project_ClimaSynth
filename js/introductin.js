@@ -10,9 +10,19 @@ const tour = new Shepherd.Tour({
 
   tour.addStep({
     title: "ClimaSynth",
-    text: `ClimaSynth is a web-based interactive application for creatively transforming environmental sound recordings in response \
-    to climate change scenarios. Field recordings from Potsdam, Germany are linked to drought effects on landscapes and ecosystems. \
-    Their stories are told from a non-human perspective through the voices of a river, birds and trees.`,
+    text: `
+    
+    <p>
+    ClimaSynth is a web-based interactive application for creatively transforming environmental sound recordings in response
+    to climate change scenarios.
+    </p>
+    <br/>
+    <p> 
+    Field recordings from Potsdam, Germany are linked to drought effects on landscapes and ecosystems.
+    </p>
+    <p>
+    Their stories are told from a non-human perspective through the voices of a river, birds and trees.
+    </p>`,
     buttons: [
       {
         action() {
@@ -34,15 +44,30 @@ const tour = new Shepherd.Tour({
 
 
   tour.addStep({
-    title: "Instructions:",
+    title: "How to play: ",
     text: `
+    <p>
+    1. Select a recording from the drop down menu and read its description
+    </p>
+    <br/>
+    <p>
+    2. Use mouse or touch to slowly interact with different environmental states represented by different visual densities
+    </p>
+    <br/>
+    <p>
+    3. Perform gestures on the visual surface and change spread values to manipulate the recording
+    </p>
+    <br/>
+    <p>
+    4. Listen to the changing relationships within the microcosm of the recordings.
+    </p>
+    <br/>
+    <p>
+    Your gestures and interaction define the sound outcome, making it unique.
+    </p>
     
-    
-    Use mouse or touch to slowly interact with different environmental states represented by different visual densities.
-    Trace paths and change spread values to navigate across environmental states.
-    Listen to changing relationships within the microcosm of the recordings.
-    Create your own versions. 
 `,
+
     buttons: [
       {
         action() {
@@ -61,28 +86,28 @@ const tour = new Shepherd.Tour({
     id: "creating",
   });
 
+
+  
   
   tour.addStep({
     title: "Field Recordings",
-    text: `- river water – river flows are shrinking and moving differently as they are drying out
+    text: `
     
+    <p>
+    river water – river flows are shrinking and moving differently as they are drying out
+    </p>
+    <br/>
+    <p>
+    birds near water – bird voices are fading out and are replaced by insects
+    </p>
+    <br/>
+    <p>
+    treebark – tree barks are becoming warmer, drier and less flexible
+    </p>
+    <br/>
+    `
     
-    
-    
-    
-    `+
-
-
-    "- birds near water – bird voices are fading out and are replaced by insects "+
-
-
-
-    " - treebark – tree barks are becoming warmer, drier and less flexible"
-    
-    
-
-    
-
+   
     
     ,
     buttons: [
