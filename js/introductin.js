@@ -65,6 +65,10 @@ const tour = new Shepherd.Tour({
     <p>
     Your gestures and interaction define the sound outcome, making it unique.
     </p>
+    <br/>
+    <p>
+    Best experienced with headphones.
+    </p>
     
 `,
 
