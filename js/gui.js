@@ -7,7 +7,7 @@ const PARAMS = {
   delay: 0.1,
   feedback: 0.1,
   spread: 0,
-  pitch: 1
+  pitchval: 1
 };
 
 
@@ -177,7 +177,7 @@ fbInput.on('change', function (ev) {
 
 const pInput = effects.addInput(PARAMS, 'pitch', { min: 0.47, max: 10, step: 0.01 });
 pInput.on('change', function (ev) {
-  pitch = parseFloat(ev.value.toFixed(2));
+  pitchval = parseFloat(ev.value.toFixed(2));
 });
 
 /*
