@@ -13,7 +13,7 @@
   spread: 0,
   pitch: 1,
   areas: 3,
-  description : "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
+  description : "bird voices joined"+'\n'+"by insects"
   };
 
 
@@ -39,15 +39,15 @@
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
   if (ev.value == 0) {
-   PARAMS.description = "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
+   PARAMS.description = "bird voices joined"+'\n'+"by insects";
     bufferSwitch(0);
     }
   if (ev.value == 1) {
-    PARAMS.description = "river flows are shrinking"+'\n'+" and moving differently "+'\n'+"as they are drying out";
+    PARAMS.description = "river flows moving"+'\n'+"differently becoming"+'\n'+"drier";
     bufferSwitch(1);
     }
   if (ev.value == 2) {
-    PARAMS.description = "tree barks are becoming warmer,"+'\n'+" drier and less flexible";
+    PARAMS.description = "trees readjusting their"+'\n'+"flexibility";
     bufferSwitch(2);
     }
   });
