@@ -8,7 +8,7 @@ const PARAMS = {
     feedback: 0.1,
     spread: 0,
     pitch: 1,
-    numcentr: 3
+    numcentroids: 3
   };
   
   
@@ -31,8 +31,6 @@ const PARAMS = {
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
     if (ev.value == 0) {
-      tour.show();
-      tour.getById("birds")
       bufferSwitch(0);
   
     }
@@ -66,10 +64,9 @@ const PARAMS = {
   });
   */
   
-  const cInput = pane.addInput(PARAMS, 'numcentr', { min: 1, max: 7, step: 1 });
+  const cInput = pane.addInput(PARAMS, 'numcentroids', { min: 1, max: 7, step: 1 });
   cInput.on('change', function (ev) {
-    numcentr = parseInt(ev.value);
-    console.log(" att in gui " + num_centroids);
+    numcentroids = parseInt(ev.value);
   });
   
 

@@ -27,7 +27,7 @@ var density = parseInt(PARAMS.density);
 
 var pitch = parseFloat(PARAMS.pitch.toFixed(1));
 
-var num_centroids = parseFloat(PARAMS.numcentr);
+var numcentroids = parseFloat(PARAMS.numcentroids);
 
 
 var dense_params_river = {
@@ -514,9 +514,11 @@ for (var i = 0; i < clus_colors.length; i++) {
             var clustertypes = [];
             var weights = [];
 
+            
 
-            for (var i = 0; i < num_centroids; i++) {
+            for (var i = 0; i < numcentroids; i++) {
 
+                console.log("number of centroids "+ numcentroids);    
 
 
                 var w = map(closest[i], closest[7], 0, 0, 1);
