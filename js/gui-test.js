@@ -55,7 +55,7 @@
 
   pane.addMonitor(PARAMS, 'description', {
     multiline: true,
-    lineCount: 1,
+    lineCount: 3,
   });
 
   /*
