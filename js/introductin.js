@@ -51,7 +51,7 @@ const tour = new Shepherd.Tour({
     </p>
     <br/>
     <p>
-    2. Use mouse or touch to slowly interact with different environmental states represented by different visual densities.
+    2. Use mouse or touch, click and drag to slowly interact with different environmental states represented by different visual densities.
     </p>
     <br/>
     <p>
