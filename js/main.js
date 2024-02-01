@@ -118,7 +118,6 @@ var spread = parseInt(PARAMS.spread);
 var del = parseFloat(PARAMS.delay.toFixed(1));
 var fb = parseFloat(PARAMS.feedback.toFixed(1));
 var density = parseInt(PARAMS.density);
-
 var pitch = parseFloat(PARAMS.pitchval.toFixed(1));
 
 
