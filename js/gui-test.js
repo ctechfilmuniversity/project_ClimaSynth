@@ -14,7 +14,7 @@ const PARAMS = {
   
   
   const pane = new Tweakpane({
-    title: 'Granular Synthesis',
+    title: 'ClimaSynth',
     expanded: true,
   });
   
