@@ -39,7 +39,7 @@
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
   if (ev.value == 0) {
-   PARAMS.description : "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
+   PARAMS.description = "bird voices are fading"+'\n'+"out and are replaced"+'\n'+"by insects"
     bufferSwitch(0);
     }
   if (ev.value == 1) {
