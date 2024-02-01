@@ -66,7 +66,7 @@ var attack_times = {
     'mediumdefault': 0.3,
     'dense': dense_params_river['attack'],
     'medium': medium_params_river['attack'],
-    'default': default_params_river['default']
+    'default': default_params_river['attack']
 }
 
 var decay_times = {
@@ -333,6 +333,7 @@ function setup() {
             }
         }
     }
+
 
 
     /*
@@ -667,8 +668,8 @@ for (var i = 0; i < clus_colors.length; i++) {
                 // cursor in der mitte vom cluster oder am rand? schau die gewichtung des nahesten centroids um den cursor
                 //     if (average(weights) >= 0.7) {
                 //     console.log( "avg > 0.7");
-                if (weights[0] >= 0.75) {
-                    if (domkey == 'dense') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
+             //   if (weights[0] >= 0.75) {
+                    if (domkey == 'dense' || domkey == 'default' || domkey == 'medium') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
                         var att0 = createVector(att, 0);
                         var dec0 = createVector(dec, 0);
                         var dens0 = createVector(density, 0);
@@ -706,8 +707,16 @@ for (var i = 0; i < clus_colors.length; i++) {
                         PARAMS.decay = dec;
                         console.log(" new att value " + att + " " + dec + " " + density);
                     }
-                    else if (domkey == 'medium') {
-                        var att0 = createVector(att, 0);
+                    console.log("current attack time " + att);
+                    console.log("weighted att of centroids " + new_att);
+        
+                    //   att = att + (new_att/posX);
+                    //   console.log("new attack time " +att);
+        
+                    grains(posX, posY);
+                }
+                else {
+                    var att0 = createVector(att, 0);
                         var dec0 = createVector(dec, 0);
                         var dens0 = createVector(density, 0);
                         /*
@@ -723,9 +732,9 @@ for (var i = 0; i < clus_colors.length; i++) {
                         var fb1 = createVector(feedback_times[domkey], 0);
                         var pitch1 = createVector(pitch_times[domkey], 0);
                         */
-                        att0.lerp(att1, 1 - parseFloat(weights[0].toFixed(2)));
-                        dec0.lerp(dec1, 1 - parseFloat(weights[0].toFixed(2)));
-                        dens0.lerp(dens1, 1 - parseFloat(weights[0].toFixed(2)));
+                        att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
+                        dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
+                        dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
                         /*
                         del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
                         fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
@@ -743,248 +752,251 @@ for (var i = 0; i < clus_colors.length; i++) {
                         PARAMS.attack = att;
                         PARAMS.decay = dec;
                         console.log(" new att value " + att + " " + dec + " " + density);
-                    }
-
-                    /*
-                    else if (domkey == 'mediumdense') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
-                        console.log("current att val " + att);
-                        var att0 = createVector(att, 0);
-                        var dec0 = createVector(att, 0);
-                        var dens0 = createVector(att, 0);
-                        var att1 = createVector(attack_times[domkey], 0);
-                        var dec1 = createVector(decay_times[domkey], 0);
-                        var dens1 = createVector(density_times[domkey], 0);
-                        att0.lerp(att1, 0.9);
-                        dec0.lerp(dec1, 0.9);
-                        dens0.lerp(dens1, 0.9);
-                        att = parseFloat(att0.x.toFixed(2));
-                        dec = parseFloat(dec0.x.toFixed(2));
-                        density = parseFloat(dens0.x.toFixed(2));
-                        console.log(" new att value " + att + " " + dec + " " + density);
-                    }
-                    */
-
-
-                    /*
-                    else { // probably close to a centorid of this cluster, on the border 
-
-                        console.log(" probably in medium or default cluster on the border " + domkey + "  " + attack_times[domkey]);
-                        console.log("current att val " + att);
-                        // medium and default/light cluster are less dense, so if first weight is very high probably close to the border of the cluster    
-                        var att0 = createVector(att, 0);
-                        var dec0 = createVector(dec, 0);
-                        var dens0 = createVector(density, 0);
-                        var del0 = createVector(del, 0);
-                        var fb0 = createVector(fb, 0);
-                        var pitch0 = createVector(pitch, 0);
-                        var att1 = createVector(attack_times[domkey], 0);
-                        var dec1 = createVector(decay_times[domkey], 0);
-                        var dens1 = createVector(density_times[domkey], 0);
-                        var del1 = createVector(delay_times[domkey], 0);
-                        var fb1 = createVector(feedback_times[domkey], 0);
-                        var pitch1 = createVector(pitch_times[domkey], 0);
-                        att0.lerp(att1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        dec0.lerp(dec1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        dens0.lerp(dens1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        del0.lerp(del1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        fb0.lerp(fb1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        pitch0.lerp(pitch1, (parseFloat(weights[0].toFixed(2))-0.6));
-                        att = parseFloat(att0.x.toFixed(2));
-                        dec = parseFloat(dec0.x.toFixed(2));
-                        density = parseFloat(dens0.x.toFixed(2));
-                        del = parseFloat(del0.x.toFixed(2));
-                        fb = parseFloat(fb0.x.toFixed(2));
-                        pitch = parseFloat(pitch0.x.toFixed(2));
-                        console.log(" new att value " + att + " " + dec + " " + density);
-                    }
-                }
-                //update_default_params();
-                /*
-                else { // on around the border of a medium cluster or in the middle of a default or medium cluster, or a lighter area
-                    // man kann nochmal unterscheiden und die average anschauen
-                    // if average.... 
-                    // average 0.1 ist vielleicht eine light area, average 0.5 eine medium area, 0.7 auch medium, mit cursor zum rand hin
-                    var att0 = createVector(att, 0);
-                    var dec0 = createVector(dec, 0);
-                    var dens0 = createVector(density, 0);
-                    var att1 = createVector(attack_times[domkey], 0);
-                    var dec1 = createVector(decay_times[domkey], 0);
-                    var dens1 = createVector(density_times[domkey], 0);
-                    att0.lerp(att1, 0.8);
-                    dec0.lerp(dec1, 0.8);
-                    dens0.lerp(dens1, 0.8);
-                    att = parseFloat(att0.x.toFixed(2));
-                    dec = parseFloat(dec0.x.toFixed(2));
-                    density = parseFloat(dens0.x.toFixed(2));
-                    console.log(" new att value " + att + " " + dec + " " + density);
+                        grains(posX, posY);
 
                 }
-                */
+                    
 
-                }
-                /*
-                *    cursor surrounded by more than one type of cluster
-                *
-                */
-                /*
-                 else if (domkey == 'dense' && weights[0] >= 0.8) {   // on the dense area path of very close to it
-                     var att0 = createVector(att, 0);
-                     var dec0 = createVector(dec, 0);
-                     var dens0 = createVector(density, 0);
-                     var del0 = createVector(del, 0);
-                     var fb0 = createVector(fb, 0);
-                     var pitch0 = createVector(pitch, 0);
-                     var att1 = createVector(attack_times[domkey], 0);
-                     var dec1 = createVector(decay_times[domkey], 0);
-                     var dens1 = createVector(density_times[domkey], 0);
-                     var del1 = createVector(delay_times[domkey], 0);
-                     var fb1 = createVector(feedback_times[domkey], 0);
-                     var pitch1 = createVector(pitch_times[domkey], 0);
-                     att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
-                     dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
-                     dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
-                     del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
-                     fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
-                     pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                     att = parseFloat(att0.x.toFixed(2));
-                     dec = parseFloat(dec0.x.toFixed(2));
-                     density = parseFloat(dens0.x.toFixed(2));
-                     del = parseFloat(del0.x.toFixed(2));
-                     fb = parseFloat(fb0.x.toFixed(2));
-                     pitch = parseFloat(pitch0.x.toFixed(2));
-                     console.log(" new att value " + att + " " + dec + " " + density);
-     
-                 }
-                 else if (domkey == 'medium' && weights[0] >= 0.8) {   // close to border or medium cluster
-                     var att0 = createVector(att, 0);
-                     var dec0 = createVector(dec, 0);
-                     var dens0 = createVector(density, 0);
-                     var del0 = createVector(del, 0);
-                     var fb0 = createVector(fb, 0);
-                     var pitch0 = createVector(pitch, 0);
-                     var att1 = createVector(attack_times[domkey], 0);
-                     var dec1 = createVector(decay_times[domkey], 0);
-                     var dens1 = createVector(density_times[domkey], 0);
-                     var del1 = createVector(delay_times[domkey], 0);
-                     var fb1 = createVector(feedback_times[domkey], 0);
-                     var pitch1 = createVector(pitch_times[domkey], 0);
-                     att0.lerp(att1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     dec0.lerp(dec1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     dens0.lerp(dens1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     del0.lerp(del1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     fb0.lerp(fb1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     pitch0.lerp(pitch1, (parseFloat(weights[0].toFixed(2)) - 0.5));
-                     att = parseFloat(att0.x.toFixed(2));
-                     dec = parseFloat(dec0.x.toFixed(2));
-                     density = parseFloat(dens0.x.toFixed(2));
-                     del = parseFloat(del0.x.toFixed(2));
-                     fb = parseFloat(fb0.x.toFixed(2));
-                     pitch = parseFloat(pitch0.x.toFixed(2));
-                     console.log(" new att value " + att + " " + dec + " " + density);
-     
-     
-                 }
-                 */
-                /*
-                else if (average(weights) <= 0.5) { // cursor is in the middle of a cluster area
-                    var att0 = createVector(att, 0);
-                    var dec0 = createVector(att, 0);
-                    var dens0 = createVector(att, 0);
-                    var att1 = createVector(attack_times[domkey], 0);
-                    var dec1 = createVector(decay_times[domkey], 0);
-                    var dens1 = createVector(density_times[domkey], 0);
-                    att0.lerp(att1, 8);
-                    dec0.lerp(dec1, 8);
-                    dens0.lerp(dens1, 8);
-                    att = parseFloat(att0.x.toFixed(2));
-                    dec = parseFloat(dec0.x.toFixed(2));
-                    density = parseFloat(dens0.x.toFixed(2));
-                    console.log(" new att value " + att + " " + dec + " " + density);
-    
-                }
-    */
+                
+     //       }
+            //                else if(weights[0] <= 0.75){
 
-                /*
-            }
-            else if(domkey == 'dense' && weights[0] >= 0.8){   // on the dense area path of very close to it
-                console.log("current att val "+ att);
-                var v0 = createVector(att,0);
-                var v1 = createVector(attack_times[domkey], 0);
-                v0.lerp(v1, 0.9);
-                att = parseFloat(v0.x.toFixed(2));
-                console.log(" new att value " + att);   
+
+            //              }
+
+            /*
+            else if (domkey == 'mediumdense') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
+                console.log("current att val " + att);
+                var att0 = createVector(att, 0);
+                var dec0 = createVector(att, 0);
+                var dens0 = createVector(att, 0);
+                var att1 = createVector(attack_times[domkey], 0);
+                var dec1 = createVector(decay_times[domkey], 0);
+                var dens1 = createVector(density_times[domkey], 0);
+                att0.lerp(att1, 0.9);
+                dec0.lerp(dec1, 0.9);
+                dens0.lerp(dens1, 0.9);
+                att = parseFloat(att0.x.toFixed(2));
+                dec = parseFloat(dec0.x.toFixed(2));
+                density = parseFloat(dens0.x.toFixed(2));
+                console.log(" new att value " + att + " " + dec + " " + density);
             }
             */
 
-                // wenn alle 5 default sind, dann slerp interpoliere vom aktuellen attack richtung default attack value
-                // wenn weight von nahesten fast 1 ist, interpoliere ganz viel richtung attack zeit der nahesten , wenn es dense cluster ist, weil dann ist man 
-                //fast an der grenze des clusters
-                // wenn die ersten drei etwa 1/2 gewichtet sind, dann interpoliere richtung des nahesten, oder der 2 nahesten (also is in the mitte des clusters)
-                // wenn centroid mit meistem gewicht , also der nahers 1 ist und es ist medium cluster, dann ist man auf der kante des clusters
-                // dense cluster sind klein und dicht. man kann auch entlang des pfades sich bewegen
-                // alle sind medium, und man ist nah an der grenze, dann interpolate ein wenig richtung medium wert. 
-                // alle sind medium udn gewichtung der ersten 2 ist 0.5, dann ist man in de mitte des clusers, interpoliere mehr richtung meidum attack wert
-                // gewichtung aller centroids is unter 0.5 , dann ist es eine light area, interpoliere richtung light area attack wert
 
-                // interpoliere ein wenig richtung dense wert
-                // interpoliere ein wenig richtung medium wert
-                // interpoliere ein wenig richtung default wert
-                /*
-                            0.1
-                            0.9
-                            0.25
-                            0.75
-                            0.5
-                */
-                console.log("current attack time " + att);
-                console.log("weighted att of centroids " + new_att);
+            /*
+            else { // probably close to a centorid of this cluster, on the border 
 
-                //   att = att + (new_att/posX);
-                //   console.log("new attack time " +att);
-
-                grains(posX, posY);
+                console.log(" probably in medium or default cluster on the border " + domkey + "  " + attack_times[domkey]);
+                console.log("current att val " + att);
+                // medium and default/light cluster are less dense, so if first weight is very high probably close to the border of the cluster    
+                var att0 = createVector(att, 0);
+                var dec0 = createVector(dec, 0);
+                var dens0 = createVector(density, 0);
+                var del0 = createVector(del, 0);
+                var fb0 = createVector(fb, 0);
+                var pitch0 = createVector(pitch, 0);
+                var att1 = createVector(attack_times[domkey], 0);
+                var dec1 = createVector(decay_times[domkey], 0);
+                var dens1 = createVector(density_times[domkey], 0);
+                var del1 = createVector(delay_times[domkey], 0);
+                var fb1 = createVector(feedback_times[domkey], 0);
+                var pitch1 = createVector(pitch_times[domkey], 0);
+                att0.lerp(att1, (parseFloat(weights[0].toFixed(2))-0.6));
+                dec0.lerp(dec1, (parseFloat(weights[0].toFixed(2))-0.6));
+                dens0.lerp(dens1, (parseFloat(weights[0].toFixed(2))-0.6));
+                del0.lerp(del1, (parseFloat(weights[0].toFixed(2))-0.6));
+                fb0.lerp(fb1, (parseFloat(weights[0].toFixed(2))-0.6));
+                pitch0.lerp(pitch1, (parseFloat(weights[0].toFixed(2))-0.6));
+                att = parseFloat(att0.x.toFixed(2));
+                dec = parseFloat(dec0.x.toFixed(2));
+                density = parseFloat(dens0.x.toFixed(2));
+                del = parseFloat(del0.x.toFixed(2));
+                fb = parseFloat(fb0.x.toFixed(2));
+                pitch = parseFloat(pitch0.x.toFixed(2));
+                console.log(" new att value " + att + " " + dec + " " + density);
             }
-
-
-
         }
-
-
-
-
-        //draw circle when mouse is pressed
-        for (var i = 0; i < dots.length; i++) {
-            dots[i].clicked(mouseX, mouseY, rad, shade);
-        }
-
-
-        // grains(posX, posY);
-
-
-
-        // draw mouse pointer coordinates
-        //   textSize(10);
-        //   text(mouseX + ", " + mouseY, 20, 20)
-
-        stroke(0);
-        strokeWeight(4);
-        noFill();
-        noStroke();
+        //update_default_params();
         /*
-        if (rate > 400) {
-            frate = 100;
-        } else {
-            frate = rate;
+        else { // on around the border of a medium cluster or in the middle of a default or medium cluster, or a lighter area
+            // man kann nochmal unterscheiden und die average anschauen
+            // if average.... 
+            // average 0.1 ist vielleicht eine light area, average 0.5 eine medium area, 0.7 auch medium, mit cursor zum rand hin
+            var att0 = createVector(att, 0);
+            var dec0 = createVector(dec, 0);
+            var dens0 = createVector(density, 0);
+            var att1 = createVector(attack_times[domkey], 0);
+            var dec1 = createVector(decay_times[domkey], 0);
+            var dens1 = createVector(density_times[domkey], 0);
+            att0.lerp(att1, 0.8);
+            dec0.lerp(dec1, 0.8);
+            dens0.lerp(dens1, 0.8);
+            att = parseFloat(att0.x.toFixed(2));
+            dec = parseFloat(dec0.x.toFixed(2));
+            density = parseFloat(dens0.x.toFixed(2));
+            console.log(" new att value " + att + " " + dec + " " + density);
+
         }
         */
-        //    frate = posX;
 
 
-        //    frate = rate;
-        //    density = rate;
-        //        PARAMS.density = rate;
-        frameRate(density);
+            /*
+            *    cursor surrounded by more than one type of cluster
+            *
+            */
+            /*
+             else if (domkey == 'dense' && weights[0] >= 0.8) {   // on the dense area path of very close to it
+                 var att0 = createVector(att, 0);
+                 var dec0 = createVector(dec, 0);
+                 var dens0 = createVector(density, 0);
+                 var del0 = createVector(del, 0);
+                 var fb0 = createVector(fb, 0);
+                 var pitch0 = createVector(pitch, 0);
+                 var att1 = createVector(attack_times[domkey], 0);
+                 var dec1 = createVector(decay_times[domkey], 0);
+                 var dens1 = createVector(density_times[domkey], 0);
+                 var del1 = createVector(delay_times[domkey], 0);
+                 var fb1 = createVector(feedback_times[domkey], 0);
+                 var pitch1 = createVector(pitch_times[domkey], 0);
+                 att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
+                 dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
+                 dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
+                 del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
+                 fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
+                 pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
+                 att = parseFloat(att0.x.toFixed(2));
+                 dec = parseFloat(dec0.x.toFixed(2));
+                 density = parseFloat(dens0.x.toFixed(2));
+                 del = parseFloat(del0.x.toFixed(2));
+                 fb = parseFloat(fb0.x.toFixed(2));
+                 pitch = parseFloat(pitch0.x.toFixed(2));
+                 console.log(" new att value " + att + " " + dec + " " + density);
+ 
+             }
+             else if (domkey == 'medium' && weights[0] >= 0.8) {   // close to border or medium cluster
+                 var att0 = createVector(att, 0);
+                 var dec0 = createVector(dec, 0);
+                 var dens0 = createVector(density, 0);
+                 var del0 = createVector(del, 0);
+                 var fb0 = createVector(fb, 0);
+                 var pitch0 = createVector(pitch, 0);
+                 var att1 = createVector(attack_times[domkey], 0);
+                 var dec1 = createVector(decay_times[domkey], 0);
+                 var dens1 = createVector(density_times[domkey], 0);
+                 var del1 = createVector(delay_times[domkey], 0);
+                 var fb1 = createVector(feedback_times[domkey], 0);
+                 var pitch1 = createVector(pitch_times[domkey], 0);
+                 att0.lerp(att1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 dec0.lerp(dec1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 dens0.lerp(dens1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 del0.lerp(del1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 fb0.lerp(fb1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 pitch0.lerp(pitch1, (parseFloat(weights[0].toFixed(2)) - 0.5));
+                 att = parseFloat(att0.x.toFixed(2));
+                 dec = parseFloat(dec0.x.toFixed(2));
+                 density = parseFloat(dens0.x.toFixed(2));
+                 del = parseFloat(del0.x.toFixed(2));
+                 fb = parseFloat(fb0.x.toFixed(2));
+                 pitch = parseFloat(pitch0.x.toFixed(2));
+                 console.log(" new att value " + att + " " + dec + " " + density);
+ 
+ 
+             }
+             */
+            /*
+            else if (average(weights) <= 0.5) { // cursor is in the middle of a cluster area
+                var att0 = createVector(att, 0);
+                var dec0 = createVector(att, 0);
+                var dens0 = createVector(att, 0);
+                var att1 = createVector(attack_times[domkey], 0);
+                var dec1 = createVector(decay_times[domkey], 0);
+                var dens1 = createVector(density_times[domkey], 0);
+                att0.lerp(att1, 8);
+                dec0.lerp(dec1, 8);
+                dens0.lerp(dens1, 8);
+                att = parseFloat(att0.x.toFixed(2));
+                dec = parseFloat(dec0.x.toFixed(2));
+                density = parseFloat(dens0.x.toFixed(2));
+                console.log(" new att value " + att + " " + dec + " " + density);
+ 
+            }
+*/
+
+            /*
+        }
+        else if(domkey == 'dense' && weights[0] >= 0.8){   // on the dense area path of very close to it
+            console.log("current att val "+ att);
+            var v0 = createVector(att,0);
+            var v1 = createVector(attack_times[domkey], 0);
+            v0.lerp(v1, 0.9);
+            att = parseFloat(v0.x.toFixed(2));
+            console.log(" new att value " + att);   
+        }
+        */
+
+            // wenn alle 5 default sind, dann slerp interpoliere vom aktuellen attack richtung default attack value
+            // wenn weight von nahesten fast 1 ist, interpoliere ganz viel richtung attack zeit der nahesten , wenn es dense cluster ist, weil dann ist man 
+            //fast an der grenze des clusters
+            // wenn die ersten drei etwa 1/2 gewichtet sind, dann interpoliere richtung des nahesten, oder der 2 nahesten (also is in the mitte des clusters)
+            // wenn centroid mit meistem gewicht , also der nahers 1 ist und es ist medium cluster, dann ist man auf der kante des clusters
+            // dense cluster sind klein und dicht. man kann auch entlang des pfades sich bewegen
+            // alle sind medium, und man ist nah an der grenze, dann interpolate ein wenig richtung medium wert. 
+            // alle sind medium udn gewichtung der ersten 2 ist 0.5, dann ist man in de mitte des clusers, interpoliere mehr richtung meidum attack wert
+            // gewichtung aller centroids is unter 0.5 , dann ist es eine light area, interpoliere richtung light area attack wert
+
+            // interpoliere ein wenig richtung dense wert
+            // interpoliere ein wenig richtung medium wert
+            // interpoliere ein wenig richtung default wert
+            /*
+                        0.1
+                        0.9
+                        0.25
+                        0.75
+                        0.5
+            */
+     
+
+
+
     }
+
+
+
+
+    //draw circle when mouse is pressed
+    for (var i = 0; i < dots.length; i++) {
+        dots[i].clicked(mouseX, mouseY, rad, shade);
+    }
+
+
+    // grains(posX, posY);
+
+
+
+    // draw mouse pointer coordinates
+    //   textSize(10);
+    //   text(mouseX + ", " + mouseY, 20, 20)
+
+    stroke(0);
+    strokeWeight(4);
+    noFill();
+    noStroke();
+    /*
+    if (rate > 400) {
+        frate = 100;
+    } else {
+        frate = rate;
+    }
+    */
+    //    frate = posX;
+
+
+    //    frate = rate;
+    //    density = rate;
+    //        PARAMS.density = rate;
+    frameRate(density);
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
