@@ -1096,14 +1096,14 @@ function grains(pos, pitch) {
     //contour.gain.linearRampToValueAtTime(0.6 * rand(0.5, 1), ctx.currentTime + grain_x_mapped);
     //contour.gain.linearRampToValueAtTime(0, ctx.currentTime + (grain_x_mapped + grain_y_mapped));
 
-    // delay.connect(feedback);
-    // feedback.connect(delay);
-    // delay.connect(master);
+     delay.connect(feedback);
+     feedback.connect(delay);
+     delay.connect(master);
 
-    // contour.connect(delay);
+     contour.connect(delay);
     contour.connect(verbLevel);
     contour.connect(master);
-    //  delay.connect(master);
+      delay.connect(master);
 
     //verbLevel.gain.setValueAtTime(0.6, ctx.currentTime);
     //verbLevel.connect(master);
