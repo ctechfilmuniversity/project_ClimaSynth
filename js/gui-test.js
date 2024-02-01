@@ -13,7 +13,7 @@
   spread: 0,
   pitch: 1,
   areas: 3,
-  description : "bird voices joined"+'\n'+"by insects"
+  scenario : "bird voices joined"+'\n'+"by insects"
   };
 
 
@@ -28,57 +28,28 @@
 
   pane.addSeparator();
 
-  /*
-  const snd = pane.addFolder({
-    title: 'Sound',
-  });
-  */
+
 
   const SourceInput =
   pane.addInput(PARAMS, 'sound', {options: {"birds near water": 0, "river water": 1, "treebark": 2 } });
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
   if (ev.value == 0) {
-   PARAMS.description = "bird voices joined"+'\n'+"by insects";
+   PARAMS.scenario = "bird voices joined"+'\n'+"by insects";
     bufferSwitch(0);
     }
   if (ev.value == 1) {
-    PARAMS.description = "river flows moving"+'\n'+"differently becoming"+'\n'+"drier";
+    PARAMS.scenario = "river flows moving"+'\n'+"differently becoming"+'\n'+"drier";
     bufferSwitch(1);
     }
   if (ev.value == 2) {
-    PARAMS.description = "trees readjusting their"+'\n'+"flexibility";
+    PARAMS.scenario = "trees readjusting their"+'\n'+"flexibility";
     bufferSwitch(2);
     }
   });
 
 
-  pane.addMonitor(PARAMS, 'description', {
-    multiline: true,
-    lineCount: 3,
-  });
 
-  /*
-  const instr = pane.addFolder({
-    title: 'Canvas',
-  });
-  */
-  /*
-
-  const mapInput = pane.addInput(PARAMS, 'map', {options: {map3: 2 } });
-  mapInput.on('change', function (ev) {
-    console.log(ev.value);
-  if (ev.value == 0) {
-    loadmap(0);
-    }
-  if (ev.value == 1) {
-    loadmap(1);
-    }
-  if (ev.value == 2) {
-    loadmap(2);
-    }
-  });
-  */
 
   const cInput = pane.addInput(PARAMS, 'areas', {min: 1, max: 7, step: 1 });
   cInput.on('change', function (ev) {
@@ -86,25 +57,17 @@
   });
 
 
-  /*
-  const area = pane.addFolder({
-    title: 'Grain Params',
-  expanded: true
-  });
-  */
-
-
   const sprInput = pane.addInput(PARAMS, 'spread', {min: 0, max: 10, step: 1 });
   sprInput.on('change', function (ev) {
     spread = parseInt(ev.value);
   });
-  /*
-  const effects = pane.addFolder({
-    title: 'Effekt Params',
-  expanded: true
+
+
+  pane.addMonitor(PARAMS, 'scenario', {
+    multiline: true,
+    lineCount: 3,
   });
 
-  */
 
   
   toggleBtnColorActive = (btnName) => {
