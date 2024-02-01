@@ -76,57 +76,8 @@ const tour = new Shepherd.Tour({
         classes: "shepherd-button-secondary",
         text: "Back",
       },
-      {
-        action() {
-          return this.next();
-        },
-        text: "Next",
-      },
     ],
     id: "creating",
   });
-
-
-  
-  
-  tour.addStep({
-    title: "Field Recordings",
-    text: `
-    
-    <p>
-    river water – river flows are shrinking and moving differently as they are drying out
-    </p>
-    <br/>
-    <p>
-    birds near water – bird voices are fading out and are replaced by insects
-    </p>
-    <br/>
-    <p>
-    treebark – tree barks are becoming warmer, drier and less flexible
-    </p>
-    <br/>
-    `
-    
-   
-    
-    ,
-    buttons: [
-      {
-        action() {
-          return this.back();
-        },
-        classes: "shepherd-button-secondary",
-        text: "Back",
-      },
-      {
-        action() {
-          return this.next();
-        },
-        text: "Next",
-      },
-    ],
-    id: "creating",
-  });
-
     
  
