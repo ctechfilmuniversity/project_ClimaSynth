@@ -20,9 +20,9 @@ var dense_params_river = {
 
 
 var default_params_river = {
-    attack: 0.4,
-    decay: 0.3,
-    density: 7,
+    attack: 0.65,
+    decay: 0.55,
+    density: 1,
     delay: 0.1,
     feedback: 0.1,
     pitch: 1
