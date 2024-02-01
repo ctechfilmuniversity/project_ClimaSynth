@@ -673,35 +673,37 @@ for (var i = 0; i < clus_colors.length; i++) {
                         var att0 = createVector(att, 0);
                         var dec0 = createVector(dec, 0);
                         var dens0 = createVector(density, 0);
-                        /*
+                        
                         var del0 = createVector(del, 0);
                         var fb0 = createVector(fb, 0);
+                        
                         var pitch0 = createVector(pitch, 0);
-                        */
+                        
                         var att1 = createVector(attack_times[domkey], 0);
                         var dec1 = createVector(decay_times[domkey], 0);
                         var dens1 = createVector(density_times[domkey], 0);
-                        /*
+                        
                         var del1 = createVector(delay_times[domkey], 0);
                         var fb1 = createVector(feedback_times[domkey], 0);
                         var pitch1 = createVector(pitch_times[domkey], 0);
-                        */
+                        
                         att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
                         dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
                         dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
-                        /*
+                        
                         del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
                         fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
+                        
                         pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                        */
+                        
                         att = parseFloat(att0.x.toFixed(2));
                         dec = parseFloat(dec0.x.toFixed(2));
                         density = parseFloat(dens0.x.toFixed(2));
-                        /*
+                        
                         del = parseFloat(del0.x.toFixed(2));
                         fb = parseFloat(fb0.x.toFixed(2));
                         pitch = parseFloat(pitch0.x.toFixed(2));
-                        */
+                        
                         PARAMS.density = density;
                         PARAMS.attack = att;
                         PARAMS.decay = dec;
@@ -721,35 +723,36 @@ for (var i = 0; i < clus_colors.length; i++) {
                             var att0 = createVector(att, 0);
                             var dec0 = createVector(dec, 0);
                             var dens0 = createVector(density, 0);
-                            /*
+                            
                             var del0 = createVector(del, 0);
                             var fb0 = createVector(fb, 0);
+                            
                             var pitch0 = createVector(pitch, 0);
-                            */
+                            
                             var att1 = createVector(attack_times[domkey], 0);
                             var dec1 = createVector(decay_times[domkey], 0);
                             var dens1 = createVector(density_times[domkey], 0);
-                            /*
+                            
                             var del1 = createVector(delay_times[domkey], 0);
                             var fb1 = createVector(feedback_times[domkey], 0);
                             var pitch1 = createVector(pitch_times[domkey], 0);
-                            */
+                            
                             att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
                             dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
                             dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
-                            /*
-                            del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
-                            fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
-                            pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                            */
+                            
+                            del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
+                            fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
+                            pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
+                            
                             att = parseFloat(att0.x.toFixed(2));
                             dec = parseFloat(dec0.x.toFixed(2));
                             density = parseFloat(dens0.x.toFixed(2));
-                            /*
+                            
                             del = parseFloat(del0.x.toFixed(2));
                             fb = parseFloat(fb0.x.toFixed(2));
                             pitch = parseFloat(pitch0.x.toFixed(2));
-                            */
+                            
                             PARAMS.density = density;
                             PARAMS.attack = att;
                             PARAMS.decay = dec;
@@ -761,27 +764,27 @@ for (var i = 0; i < clus_colors.length; i++) {
                             var att0 = createVector(att, 0);
                             var dec0 = createVector(dec, 0);
                             var dens0 = createVector(density, 0);
-                            /*
+                            
                             var del0 = createVector(del, 0);
                             var fb0 = createVector(fb, 0);
                             var pitch0 = createVector(pitch, 0);
-                            */
+                            
                             var att1 = createVector(attack_times[domkey], 0);
                             var dec1 = createVector(decay_times[domkey], 0);
                             var dens1 = createVector(density_times[domkey], 0);
-                            /*
+                            
                             var del1 = createVector(delay_times[domkey], 0);
                             var fb1 = createVector(feedback_times[domkey], 0);
                             var pitch1 = createVector(pitch_times[domkey], 0);
-                            */
+                            
                             att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
                             dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
                             dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
-                            /*
+                            
                             del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
                             fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
                             pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                            */
+                            
                             att = parseFloat(att0.x.toFixed(2));
                             dec = parseFloat(dec0.x.toFixed(2));
                             density = parseFloat(dens0.x.toFixed(2));
@@ -803,35 +806,35 @@ for (var i = 0; i < clus_colors.length; i++) {
                             var att0 = createVector(att, 0);
                             var dec0 = createVector(dec, 0);
                             var dens0 = createVector(density, 0);
-                            /*
+                            
                             var del0 = createVector(del, 0);
                             var fb0 = createVector(fb, 0);
                             var pitch0 = createVector(pitch, 0);
-                            */
+                            
                             var att1 = createVector(attack_times[domkey], 0);
                             var dec1 = createVector(decay_times[domkey], 0);
                             var dens1 = createVector(density_times[domkey], 0);
-                            /*
+                            
                             var del1 = createVector(delay_times[domkey], 0);
                             var fb1 = createVector(feedback_times[domkey], 0);
                             var pitch1 = createVector(pitch_times[domkey], 0);
-                            */
+                            
                             att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
                             dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
                             dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
-                            /*
-                            del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
-                            fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
-                            pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                            */
+                            
+                            del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
+                            fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
+                            pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
+                            
                             att = parseFloat(att0.x.toFixed(2));
                             dec = parseFloat(dec0.x.toFixed(2));
                             density = parseFloat(dens0.x.toFixed(2));
-                            /*
+                            
                             del = parseFloat(del0.x.toFixed(2));
                             fb = parseFloat(fb0.x.toFixed(2));
                             pitch = parseFloat(pitch0.x.toFixed(2));
-                            */
+                            
                             PARAMS.density = density;
                             PARAMS.attack = att;
                             PARAMS.decay = dec;
