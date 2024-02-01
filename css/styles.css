@@ -1214,3 +1214,64 @@ time, mark, audio, video {
 		z-index: -9999;
 	}
 }
+
+
+
+
+/*  */
+/* ONBOARDING TOUR */
+/*  */
+
+.shepherd-element {
+    position: block;
+    border-radius: 0;
+} 
+.shepherd-element .shepherd-content {
+  border-radius: 0;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+  background: #ffffff;
+  color: #444;
+  font-size: 1.1em;
+  line-height: 1.5em;
+}
+.shepherd-element .shepherd-content .shepherd-button {
+  background: #999999;
+  color: #fff;
+}
+.shepherd-button {
+  border-radius: 0;
+  display: flex;
+  flex-grow: 1;
+  font-size: 1rem;
+  justify-content: space-around;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 1;
+}
+.shepherd-button:hover {
+  opacity: 0.8;
+}
+.shepherd-has-title .shepherd-content .shepherd-cancel-icon {
+  /* margin-top: -7px; */
+  background-color: transparent;
+}
+.shepherd-has-title .shepherd-content .shepherd-header {
+  background: transparent;
+  padding-bottom: 0;
+  padding-left: 1.25rem;
+}
+.shepherd-has-title .shepherd-content .shepherd-header .shepherd-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.shepherd-text {
+  font-size: 1rem;
+  padding: 1rem 1.25rem;
+}
+.shepherd.tippy-popper[x-placement^="top"] .tippy-arrow{
+  border-top-color: #fdf5e6;
+}
