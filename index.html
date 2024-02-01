@@ -4,14 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>ClimaSynth Web Prototype</title>
+
     <script src="js/p5.js"></script>
     <script src="js/tweakpane.min.js"></script>
- 
+     <!-- shepard.js for onboarding tour -->
+         <!-- shepard.js for onboarding tour -->
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js"></script>
+
+    <!-- font-family -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400&display=swap");
+    </style>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap");
+    </style>
 
 
 
 
     <link rel="stylesheet" href="css/styles.css">
+    
     <!--viewport tag below courtesy of https://creative-coding.decontextualize.com/mobile/-->
     <meta name="viewport"
         content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -20,7 +33,20 @@
 
 
 <body>
+    
+
+    <div class="infoContainer">
+        <button class="btn-info" onclick="tour.start()">
+          <img
+            src="./info_icon.svg"
+            alt="info_icon.svg"
+            title="Info"
+            width="45px"
+          />
+        </button>
+      </div>
     <div id="canvasContainer">
+        <script src="js/introductin.js"></script>
         <script src="clusters_a.js"></script> 
         <script src="clusters_b.js"></script> 
         <script src="clustered_points.js"></script>
