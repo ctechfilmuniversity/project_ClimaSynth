@@ -14,7 +14,7 @@ const PARAMS = {
   
   
   const pane = new Tweakpane({
-    title: 'Granular Synthesis',
+    title: 'ClimaSynth',
     expanded: true,
   });
   
@@ -85,12 +85,7 @@ const PARAMS = {
   sprInput.on('change', function (ev) {
     spread = parseInt(ev.value);
   });
-  
-  
-  const effects = pane.addFolder({
-    title: 'Effekt Params',
-    expanded: true
-  });
+
   
 
 
