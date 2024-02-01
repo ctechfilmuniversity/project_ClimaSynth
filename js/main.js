@@ -43,45 +43,45 @@ var attack_times = {
     'densemedium': 0.6,
     'densedefault': 0.6,
     'mediumdefault': 0.3,
-    'dense': 0.7,
-    'medium': 0.24,
-    'default': 0.4
-};
+    'dense': dense_params_river['attack'],
+    'medium': medium_params_river['attack'],
+    'default': default_params_river['default']
+}
 
 var decay_times = {
     'densemedium': 0.3,
     'densedefault': 0.5,
     'mediumdefault': 0.2,
-    'dense': 0.8,
-    'medium': 0.3,
-    'default': 0.4
+    'dense': dense_params_river['decay'],
+    'medium': medium_params_river['decay'],
+    'default': default_params_river['decay']
 }
 
 var density_times = {
     'densemedium': 50,
     'densedefault': 17,
     'mediumdefault': 12,
-    'dense': 78,
-    'medium': 20,
-    'default': 7
+    'dense': dense_params_river['density'],
+    'medium': medium_params_river['density'],
+    'default': default_params_river['density']
 }
 
 var delay_times = {
     'densemedium': 0.1,
     'densedefault': 0.1,
     'mediumdefault': 0.1,
-    'dense': 0.3,
-    'medium': 0.1,
-    'default': 0.0
+    'dense': dense_params_river['delay'],
+    'medium': medium_params_river['delay'],
+    'default': default_params_river['delay']
 }
 
 var feedback_times = {
     'densemedium': 0.1,
     'densedefault': 0.1,
     'mediumdefault': 0.1,
-    'dense': 0.2,
-    'medium': 0.1,
-    'default': 0.0
+    'dense': dense_params_river['feedback'],
+    'medium': medium_params_river['feedback'],
+    'default': default_params_river['feedback']
 }
 
 
@@ -89,12 +89,10 @@ var pitch_times = {
     'densemedium': 3,
     'densedefault': 2,
     'mediumdefault': 0.5,
-    'dense': 9,
-    'medium': 1.5,
-    'default': 1
+    'dense': dense_params_river['pitch'],
+    'medium': medium_params_river['pitch'],
+    'default': default_params_river['pitch']
 }
-
-
 
 var red_dense_cl = 0;
 var green_dense_cl = 0;
