@@ -39,7 +39,7 @@
     bufferSwitch(0);
     }
   if (ev.value == 1) {
-    PARAMS.scenario = "river flows moving"+'\n'+"differently becoming"+'\n'+"drier";
+    PARAMS.scenario = "river flowing differently"+'\n'+"becoming drier";
     bufferSwitch(1);
     }
   if (ev.value == 2) {
