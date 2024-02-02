@@ -31,7 +31,7 @@
 
 
   const SourceInput =
-  pane.addInput(PARAMS, 'sound', {options: {"birds near water": 0, "river water": 1, "treebark": 2 } });
+  pane.addInput(PARAMS, 'sound', {options: {"birds near water": 0, "river water": 1, "tree bark": 2 } });
   SourceInput.on('change', function (ev) {
     console.log(ev.value);
   if (ev.value == 0) {
