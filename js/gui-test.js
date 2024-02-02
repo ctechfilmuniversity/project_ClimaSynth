@@ -39,11 +39,11 @@
     bufferSwitch(0);
     }
   if (ev.value == 1) {
-    PARAMS.scenario = "river flowing differently"+'\n'+"becoming drier";
+    PARAMS.scenario = "river flowing"+'\n'+"differently becoming"+'\n'+"drier";
     bufferSwitch(1);
     }
   if (ev.value == 2) {
-    PARAMS.scenario = "trees readjusting their"+'\n'+"flexibility";
+    PARAMS.scenario = "trees readjusting"+'\n'+"their flexibility";
     bufferSwitch(2);
     }
   });
