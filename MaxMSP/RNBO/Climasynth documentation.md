@@ -1,13 +1,13 @@
 # Overview
 
-Climasynth is a granular synthesis application originally developed in MaxMSP for processing field recordings in relation to climate scenarios. The application is part of the research project [Listening to Climate Change](https://www.filmuniversitaet.de/forschung-transfer/forschung/projekte/projektseite/detail/listening-to-climate-change-the-role-of-sound-and-new-media-formats-for-enhancing-environmental-perception) undertaken by Dr. Eleni-Ira Panourgia at Film University Babelsberg KONRAD WOLF with guidance and mentorship from Prof. Dr. Angela Brennecke and funded with an Individual Grant by Postdoc Network Brandenburg. The development work is realized by Danylo Okulov.  
+A granular synthesis application originally developed in MaxMSP for processing field recordings in relation to climate scenarios.
 
-The design of Climasynth builds on Okulov's Nebulizer, a poly-voice granular synthesizer originally developed as an internal sound deign tool for synthesis of sound textures, leveraging the polyphony to achieve dense sound textures (nebulas) out of any selected sound sample. The workflow provides a minimalist, real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane widget to interpolate between them. 
+The design of the app builds on Okulov's Nebulizer, a poly-voice granular synthesizer originally developed as an internal sound deign tool for synthesis of sound textures, leveraging the polyphony to achieve dense sound textures (nebulas) out of any selected sound sample. The workflow provides a minimalist, real-time performance-friendly UI. It mainly consists of pre-programming synthesis parameter presets and then using the RBFI-plane widget to interpolate between them. 
 The standalone version allows creating, saving and loading projects and scenes within them. It was designed with both content creator and an end users without musical/programming background in mind.  
 
 # Development and design 
 
-The following challenges guided the development and design of Climasynth as a creator- and user-friendly instrument: 
+The following challenges guided the development and design of a creator- and user-friendly instrument: 
 1. The content creator has to be able to pre-program (as intuitively as possible) the instrument for the public to explore the pre-programmed content. 
 2. The user ideally has no particular target category. A person with no expert background about the granular synthesis has to be able to explore the content. 
 
@@ -57,7 +57,7 @@ The UI is split into the following parts:
 
 Granular synthesis uses pre-recorded sound samples to generate new sound materials from very short (1-100ms) parts of a sample or 'grains' played back next to each other. The output often referred to as 'nebula' is a dense cloud of short fragments of sound whith some portion of the original tone texture presserved, although heavily altered and often smeared into one continuous cloud of sound. 
 This creates a perfect base for both working with sample-basaed input material and morphing sounds into one another. 
-In Climasynth's algorhythm we tke advantage of polyphonic synthesis and run mmultiple instances of the granular synthesizer module using the same sample with different parameter settings. The polyphonic approach and the ability to 'ganulate' samples in parallel has also pushed us towards choosing wider than typical parameter ranges, going up to max 2000 milliseconds per 'grain'. 
+The algorithm takes advantage of polyphonic synthesis and run mmultiple instances of the granular synthesizer module using the same sample with different parameter settings. The polyphonic approach and the ability to 'ganulate' samples in parallel has also pushed us towards choosing wider than typical parameter ranges, going up to max 2000 milliseconds per 'grain'. 
 Each instances' parameters have dedicated controls, exposed to the content creator. 
 
 The synthesis algorithm of a single instance looks as follows:
