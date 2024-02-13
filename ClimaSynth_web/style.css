@@ -1,0 +1,53 @@
+html,.header, body {
+  margin:10 10;
+  
+  padding:0;
+  background-color:lightgrey;
+  color-scheme: light;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+
+div{
+  border-style:inset;
+  
+inline-size: 20;
+  background-color: #bbb;
+  
+  margin: 20px 20px;
+  padding: 10px 10px;
+  border-width:2px;
+  width: 600;
+  border-radius: 5px ;
+ 
+}
+h1
+{
+  margin: 10 30;
+  text-decoration: underline;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+
+button
+{
+  color: #000;
+}
+select{
+
+  background-color: #eee;
+  width: 200px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  size: medium;
+  font-size: 20;
+  font-family: "Lucida Console", "Courier New", monospace;
+  border-radius: 5px ;
+}
+button
+{
+ background-color: black;
+}
+canvas {
+  display: block;
+}
