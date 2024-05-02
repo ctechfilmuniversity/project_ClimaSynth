@@ -33,7 +33,7 @@ var areas = parseFloat(PARAMS.areas);
 var dense_params_river = {
     attack: 0.7,
     decay: 0.8,
-    density: 78,
+    density: 100,
     delay: 0.3,
     feedback: 0.2,
     pitch: 9
@@ -53,7 +53,7 @@ var default_params_river = {
 var medium_params_river = {
     attack: 0.24,
     decay: 0.26,
-    density: 20,
+    density: 45,
     delay: 0.4,
     feedback: 0.4,
     pitch: 4.72
@@ -134,6 +134,7 @@ var blue_dense_cl = 255;
 var rad = 15;
 var shade = 150;
 
+
 var bg = [];
 var dots = []
 
@@ -148,7 +149,7 @@ var frate;
 
 var posX, posY;
 
-
+var voicesmono = []; //this will be used for mouse events 
 var points = [];
 var centroids = [];
 
@@ -183,6 +184,7 @@ window.onload = function () {
     cVerb = ctx.createConvolver();
     cVerb.connect(ctx.destination);
 
+    /*
     //get IR
     irBuff;
     var getIr = new XMLHttpRequest();
@@ -194,12 +196,10 @@ window.onload = function () {
             irBuff = buffer;
         });
     };
-
     getIr.send();
+    */
 
-    var sliderRate;
-    var sliderAtt;
-    var sliderDec;
+
 
     //load buffer with page
     bufferSwitch(0);
@@ -353,6 +353,10 @@ function setup() {
     ellipseMode(RADIUS);
     noStroke();
 }
+
+
+
+
 
 //p5.js draw
 function draw() {
@@ -514,11 +518,11 @@ for (var i = 0; i < clus_colors.length; i++) {
             var clustertypes = [];
             var weights = [];
 
-            
+
 
             for (var i = 0; i < areas; i++) {
 
-                console.log("number of centroids "+ areas);    
+                console.log("number of centroids " + areas);
 
 
                 var w = map(closest[i], closest[7], 0, 0, 1);
@@ -670,186 +674,241 @@ for (var i = 0; i < clus_colors.length; i++) {
                 // cursor in der mitte vom cluster oder am rand? schau die gewichtung des nahesten centroids um den cursor
                 //     if (average(weights) >= 0.7) {
                 //     console.log( "avg > 0.7");
-             //   if (weights[0] >= 0.75) {
-                    if (domkey == 'dense' || domkey == 'default' || domkey == 'medium') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
+                //   if (weights[0] >= 0.75) {
+                if (domkey == 'dense' || domkey == 'default' || domkey == 'medium') { // probably in the dense cluster or on its border, dense clusters are narrow and dnese, so probably very close to centroid
+                    var att0 = createVector(att, 0);
+                    var dec0 = createVector(dec, 0);
+                    var dens0 = createVector(density, 0);
+
+                    var del0 = createVector(del, 0);
+                    var fb0 = createVector(fb, 0);
+
+                    var pitch0 = createVector(pitch, 0);
+
+                    var att1 = createVector(attack_times[domkey], 0);
+                    var dec1 = createVector(decay_times[domkey], 0);
+                    var dens1 = createVector(density_times[domkey], 0);
+
+                    var del1 = createVector(delay_times[domkey], 0);
+                    var fb1 = createVector(feedback_times[domkey], 0);
+                    var pitch1 = createVector(pitch_times[domkey], 0);
+
+                    att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
+                    dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
+                    dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
+
+                    del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
+                    fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
+
+                    pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
+
+                    att = parseFloat(att0.x.toFixed(2));
+                    dec = parseFloat(dec0.x.toFixed(2));
+                    density = parseFloat(dens0.x.toFixed(2));
+
+                    del = parseFloat(del0.x.toFixed(2));
+                    fb = parseFloat(fb0.x.toFixed(2));
+                    pitch = parseFloat(pitch0.x.toFixed(2));
+
+
+                    PARAMS.density = density;
+                    PARAMS.attack = att;
+                    PARAMS.decay = dec;
+                    console.log(" new att value " + att + " " + dec + " " + density);
+                }
+                console.log("current attack time " + att);
+                console.log("weighted att of centroids " + new_att);
+
+                //   att = att + (new_att/posX);
+                //   console.log("new attack time " +att);
+
+                //         if (density < 35) {
+                //             // use a different approach for spawning grains
+                density = map(density, 1, 100, 0, 1);
+                if (voicesmono.length == 0) {
+                    console.log("create a new voice");
+                    var v = new voice_main();
+                    v.playmouse();
+                    voicesmono[0] = v;
+                }
+                //          }
+                //          else {
+                //              // grains(posX, posY);
+                //              graingenerator_main(posX, posY);
+                //          }
+
+            }
+            else {
+                if (average(weights) >= 0.5) {
+                    if (domkey == 'dense' && 'default' in clus_map) {
                         var att0 = createVector(att, 0);
                         var dec0 = createVector(dec, 0);
                         var dens0 = createVector(density, 0);
-                        
+
                         var del0 = createVector(del, 0);
                         var fb0 = createVector(fb, 0);
-                        
+
                         var pitch0 = createVector(pitch, 0);
-                        
+
                         var att1 = createVector(attack_times[domkey], 0);
                         var dec1 = createVector(decay_times[domkey], 0);
                         var dens1 = createVector(density_times[domkey], 0);
-                        
+
                         var del1 = createVector(delay_times[domkey], 0);
                         var fb1 = createVector(feedback_times[domkey], 0);
                         var pitch1 = createVector(pitch_times[domkey], 0);
-                        
-                        att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
-                        dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
-                        dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
-                        
-                        del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
-                        fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
-                        
-                        pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                        
+
+                        att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
+                        dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
+                        dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
+
+                        del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
+                        fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
+                        pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
+
                         att = parseFloat(att0.x.toFixed(2));
                         dec = parseFloat(dec0.x.toFixed(2));
                         density = parseFloat(dens0.x.toFixed(2));
-                        
+
                         del = parseFloat(del0.x.toFixed(2));
                         fb = parseFloat(fb0.x.toFixed(2));
                         pitch = parseFloat(pitch0.x.toFixed(2));
-                        
+
                         PARAMS.density = density;
                         PARAMS.attack = att;
                         PARAMS.decay = dec;
                         console.log(" new att value " + att + " " + dec + " " + density);
-                    }
-                    console.log("current attack time " + att);
-                    console.log("weighted att of centroids " + new_att);
-        
-                    //   att = att + (new_att/posX);
-                    //   console.log("new attack time " +att);
-        
-                    grains(posX, posY);
-                }
-                else {
-                    if(average(weights) >=0.5){
-                        if(domkey == 'dense' && 'default' in clus_map){
-                            var att0 = createVector(att, 0);
-                            var dec0 = createVector(dec, 0);
-                            var dens0 = createVector(density, 0);
-                            
-                            var del0 = createVector(del, 0);
-                            var fb0 = createVector(fb, 0);
-                            
-                            var pitch0 = createVector(pitch, 0);
-                            
-                            var att1 = createVector(attack_times[domkey], 0);
-                            var dec1 = createVector(decay_times[domkey], 0);
-                            var dens1 = createVector(density_times[domkey], 0);
-                            
-                            var del1 = createVector(delay_times[domkey], 0);
-                            var fb1 = createVector(feedback_times[domkey], 0);
-                            var pitch1 = createVector(pitch_times[domkey], 0);
-                            
-                            att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
-                            dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
-                            dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
-                            
-                            del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
-                            fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
-                            pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
-                            
-                            att = parseFloat(att0.x.toFixed(2));
-                            dec = parseFloat(dec0.x.toFixed(2));
-                            density = parseFloat(dens0.x.toFixed(2));
-                            
-                            del = parseFloat(del0.x.toFixed(2));
-                            fb = parseFloat(fb0.x.toFixed(2));
-                            pitch = parseFloat(pitch0.x.toFixed(2));
-                            
-                            PARAMS.density = density;
-                            PARAMS.attack = att;
-                            PARAMS.decay = dec;
-                            console.log(" new att value " + att + " " + dec + " " + density);
-                            grains(posX,posY);
-                       }
-                       else {
-                    //    if(domkey == 'medium' && 'default' in clus_map && clus_map['default'] >= 2){
-                            var att0 = createVector(att, 0);
-                            var dec0 = createVector(dec, 0);
-                            var dens0 = createVector(density, 0);
-                            
-                            var del0 = createVector(del, 0);
-                            var fb0 = createVector(fb, 0);
-                            var pitch0 = createVector(pitch, 0);
-                            
-                            var att1 = createVector(attack_times[domkey], 0);
-                            var dec1 = createVector(decay_times[domkey], 0);
-                            var dens1 = createVector(density_times[domkey], 0);
-                            
-                            var del1 = createVector(delay_times[domkey], 0);
-                            var fb1 = createVector(feedback_times[domkey], 0);
-                            var pitch1 = createVector(pitch_times[domkey], 0);
-                            
-                            att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
-                            dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
-                            dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
-                            
-                            del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
-                            fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
-                            pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
-                            
-                            att = parseFloat(att0.x.toFixed(2));
-                            dec = parseFloat(dec0.x.toFixed(2));
-                            density = parseFloat(dens0.x.toFixed(2));
-                            /*
-                            del = parseFloat(del0.x.toFixed(2));
-                            fb = parseFloat(fb0.x.toFixed(2));
-                            pitch = parseFloat(pitch0.x.toFixed(2));
-                            */
-                            PARAMS.density = density;
-                            PARAMS.attack = att;
-                            PARAMS.decay = dec;
-                            console.log(" new att value " + att + " " + dec + " " + density);
-                            grains(posX,posY);
-                   //    }
-                       }
-                    }
-                    else if(average(weights) <= 0.5){
-                       // if(domkey == 'medium' && 'default' in clus_map && clus_map['default'] >= 2){
-                            var att0 = createVector(att, 0);
-                            var dec0 = createVector(dec, 0);
-                            var dens0 = createVector(density, 0);
-                            
-                            var del0 = createVector(del, 0);
-                            var fb0 = createVector(fb, 0);
-                            var pitch0 = createVector(pitch, 0);
-                            
-                            var att1 = createVector(attack_times[domkey], 0);
-                            var dec1 = createVector(decay_times[domkey], 0);
-                            var dens1 = createVector(density_times[domkey], 0);
-                            
-                            var del1 = createVector(delay_times[domkey], 0);
-                            var fb1 = createVector(feedback_times[domkey], 0);
-                            var pitch1 = createVector(pitch_times[domkey], 0);
-                            
-                            att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
-                            dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
-                            dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
-                            
-                            del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
-                            fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
-                            pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
-                            
-                            att = parseFloat(att0.x.toFixed(2));
-                            dec = parseFloat(dec0.x.toFixed(2));
-                            density = parseFloat(dens0.x.toFixed(2));
-                            
-                            del = parseFloat(del0.x.toFixed(2));
-                            fb = parseFloat(fb0.x.toFixed(2));
-                            pitch = parseFloat(pitch0.x.toFixed(2));
-                            
-                            PARAMS.density = density;
-                            PARAMS.attack = att;
-                            PARAMS.decay = dec;
-                            console.log(" new att value " + att + " " + dec + " " + density);
-                            grains(posX,posY);
-                    //    }
-                    }
-                    
-                }
-                    
+                        //         if (density < 35) {
+                        //             // use a different approach for spawning grains
+                        density = map(density, 1, 100, 0, 1);
+                        if (voicesmono.length == 0) {
+                            console.log("create a new voice");
+                            var v = new voice_main();
+                            v.playmouse();
+                            voicesmono[0] = v;
+                        }
+                        //          }
+                        //          else {
+                        //              // grains(posX, posY);
+                        //              graingenerator_main(posX, posY);
+                        //          }
 
-                
-     //       }
+                    }
+                    else {
+                        //    if(domkey == 'medium' && 'default' in clus_map && clus_map['default'] >= 2){
+                        var att0 = createVector(att, 0);
+                        var dec0 = createVector(dec, 0);
+                        var dens0 = createVector(density, 0);
+
+                        var del0 = createVector(del, 0);
+                        var fb0 = createVector(fb, 0);
+                        var pitch0 = createVector(pitch, 0);
+
+                        var att1 = createVector(attack_times[domkey], 0);
+                        var dec1 = createVector(decay_times[domkey], 0);
+                        var dens1 = createVector(density_times[domkey], 0);
+
+                        var del1 = createVector(delay_times[domkey], 0);
+                        var fb1 = createVector(feedback_times[domkey], 0);
+                        var pitch1 = createVector(pitch_times[domkey], 0);
+
+                        att0.lerp(att1, parseFloat(weights[0].toFixed(2)));
+                        dec0.lerp(dec1, parseFloat(weights[0].toFixed(2)));
+                        dens0.lerp(dens1, parseFloat(weights[0].toFixed(2)));
+
+                        del0.lerp(del1, parseFloat(weights[0].toFixed(2)));
+                        fb0.lerp(fb1, parseFloat(weights[0].toFixed(2)));
+                        pitch0.lerp(pitch1, parseFloat(weights[0].toFixed(2)));
+
+                        att = parseFloat(att0.x.toFixed(2));
+                        dec = parseFloat(dec0.x.toFixed(2));
+                        density = parseFloat(dens0.x.toFixed(2));
+                        /*
+                        del = parseFloat(del0.x.toFixed(2));
+                        fb = parseFloat(fb0.x.toFixed(2));
+                        pitch = parseFloat(pitch0.x.toFixed(2));
+                        */
+                        PARAMS.density = density;
+                        PARAMS.attack = att;
+                        PARAMS.decay = dec;
+                        console.log(" new att value " + att + " " + dec + " " + density);
+                        //         if (density < 35) {
+                        //             // use a different approach for spawning grains
+                        density = map(density, 1, 100, 0, 1);
+                        if (voicesmono.length == 0) {
+                            console.log("create a new voice");
+                            var v = new voice_main();
+                            v.playmouse();
+                            voicesmono[0] = v;
+                        }
+                        //          }
+                        //          else {
+                        //              // grains(posX, posY);
+                        //              graingenerator_main(posX, posY);
+                        //          }
+                        //    }
+                    }
+                }
+                else if (average(weights) <= 0.5) {
+                    // if(domkey == 'medium' && 'default' in clus_map && clus_map['default'] >= 2){
+                    var att0 = createVector(att, 0);
+                    var dec0 = createVector(dec, 0);
+                    var dens0 = createVector(density, 0);
+
+                    var del0 = createVector(del, 0);
+                    var fb0 = createVector(fb, 0);
+                    var pitch0 = createVector(pitch, 0);
+
+                    var att1 = createVector(attack_times[domkey], 0);
+                    var dec1 = createVector(decay_times[domkey], 0);
+                    var dens1 = createVector(density_times[domkey], 0);
+
+                    var del1 = createVector(delay_times[domkey], 0);
+                    var fb1 = createVector(feedback_times[domkey], 0);
+                    var pitch1 = createVector(pitch_times[domkey], 0);
+
+                    att0.lerp(att1, parseFloat(weights[1].toFixed(2)));
+                    dec0.lerp(dec1, parseFloat(weights[1].toFixed(2)));
+                    dens0.lerp(dens1, parseFloat(weights[1].toFixed(2)));
+
+                    del0.lerp(del1, parseFloat(weights[1].toFixed(2)));
+                    fb0.lerp(fb1, parseFloat(weights[1].toFixed(2)));
+                    pitch0.lerp(pitch1, parseFloat(weights[1].toFixed(2)));
+
+                    att = parseFloat(att0.x.toFixed(2));
+                    dec = parseFloat(dec0.x.toFixed(2));
+                    density = parseFloat(dens0.x.toFixed(2));
+
+                    del = parseFloat(del0.x.toFixed(2));
+                    fb = parseFloat(fb0.x.toFixed(2));
+                    pitch = parseFloat(pitch0.x.toFixed(2));
+
+                    PARAMS.density = density;
+                    PARAMS.attack = att;
+                    PARAMS.decay = dec;
+                    console.log(" new att value " + att + " " + dec + " " + density);
+                    //         if (density < 35) {
+                    //             // use a different approach for spawning grains
+                    density = map(density, 1, 100, 0, 1);
+                    if (voicesmono.length == 0) {
+                        console.log("create a new voice");
+                        var v = new voice_main();
+                        v.playmouse();
+                        voicesmono[0] = v;
+                    }
+                    //          }
+                    //          else {
+                    //              // grains(posX, posY);
+                    //              graingenerator_main(posX, posY);
+                    //          }
+                    //    }
+                }
+
+            }
+
+
+
+            //       }
             //                else if(weights[0] <= 0.75){
 
 
@@ -1046,49 +1105,271 @@ for (var i = 0; i < clus_colors.length; i++) {
                         0.75
                         0.5
             */
-     
 
 
+
+
+        }
+
+
+        else {
+            for (var i = 0; i < voicesmono.length; i++) {
+                console.log("Stop voice");
+                voicesmono[i].stop();
+                voicesmono.splice(i);
+            }
+        }
+
+        //draw circle when mouse is pressed
+        for (var i = 0; i < dots.length; i++) {
+            dots[i].clicked(mouseX, mouseY, rad, shade);
+        }
+
+
+        // grains(posX, posY);
+
+
+
+        // draw mouse pointer coordinates
+        //   textSize(10);
+        //   text(mouseX + ", " + mouseY, 20, 20)
+
+        stroke(0);
+        strokeWeight(4);
+        noFill();
+        noStroke();
+        /*
+        if (rate > 400) {
+            frate = 100;
+        } else {
+            frate = rate;
+        }
+        */
+        //    frate = posX;
+
+
+        //    frate = rate;
+        //    density = rate;
+        //        PARAMS.density = rate;
+        //    if (density >= 20) {
+        //        frameRate(density);
+        //    }
 
     }
 
-
-
-
-    //draw circle when mouse is pressed
-    for (var i = 0; i < dots.length; i++) {
-        dots[i].clicked(mouseX, mouseY, rad, shade);
+    else {
+        for (var i = 0; i < voicesmono.length; i++) {
+            console.log("Stop voice");
+            voicesmono[i].stop();
+            voicesmono.splice(i);
+        }
     }
 
 
-    // grains(posX, posY);
+}
 
 
 
-    // draw mouse pointer coordinates
-    //   textSize(10);
-    //   text(mouseX + ", " + mouseY, 20, 20)
 
-    stroke(0);
-    strokeWeight(4);
-    noFill();
-    noStroke();
+
+//the grain class
+function graingenerator_main(positionx, positiony) {
+
+    console.log("in grain generator");
+
+    var grain = ctx.createBufferSource();
+    grain.buffer = audioBuffer;
+    //create the gain for enveloping
+    var contour = ctx.createGain();
+
+    // add a feedback delay to the grain
+    var delnode = ctx.createDelay();
+    delnode.delayTime.value = del;
+
+    grain.connect(delnode);
+
+    var feedbnode = ctx.createGain();
+    feedbnode.gain.value = fb;
+
+    delnode.connect(feedbnode);
+    feedbnode.connect(delnode);
+    delnode.connect(master);
+
+    grain.connect(contour);
+    contour.connect(master);
+
+    //update the position and calcuate the offset
+    var len = grain.buffer.duration;
+    var offset = len * (positionx / windowWidth); //pixels to seconds
+
+    //update and calculate the amplitude
+    amp = positiony / windowHeight;
+    amp = map(amp, 0.0, 1.0, 1.0, 0.0);
+
+    grain.playbackRate.value = grain.playbackRate.value * pitch; // transpose pitch
+
+    randomoffset = (Math.random() * spread) - (spread / 2); //in seconds
+
+    grain.start(ctx.currentTime, Math.max(0.0, offset + randomoffset));
+    contour.gain.setValueAtTime(0.0, ctx.currentTime);
+    contour.gain.linearRampToValueAtTime(amp, ctx.currentTime + att);
+    contour.gain.linearRampToValueAtTime(0.0, ctx.currentTime + (att + dec));
+    grain.stop(ctx.currentTime + att + dec + 0.1);
+
+
+    var tms = (att + dec) * 1000; //calculate the time in miliseconds
+    setTimeout(function () {
+        contour.disconnect();
+    }, tms + 200);
+
+}
+
+
+function voice_main(id) {
+    this.touchid = id;
+    this.grains = [];
+    var that = this;
+    this.playmouse = function () {
+        this.play = function () {
+            graingenerator_main(mouseX, mouseY);
+            this.dens = map(density, 1, 0, 0, 1);
+            this.interval = (this.dens * 500) + 3;
+            that.timeout = setTimeout(that.play, this.interval);
+        }
+        this.play();
+    }
+    this.stop = function () {
+        clearTimeout(this.timeout);
+    }
+}
+
+
+
+
+
+
+
+
+
+function voice(id) {
+
+    this.touchid = id; //the id of the touch event 
+}
+
+
+//play function for mouse event
+voice.prototype.playmouse = function () {
+    this.grains = [];
+    this.graincount = 0;
+    var that = this; //for scope issues	
+    this.play = function () {
+        //create new grain
+        var g = new playgrain(mouseX, mouseY);
+        //push to the array
+        that.grains[that.graincount] = g;
+        that.graincount += 1;
+        /*
+                if (that.graincount > 20) {
+                    that.graincount = 0;
+                }
+                */
+        //next interval
+        this.dens = map(density, 1, 0, 0, 1);
+        this.interval = (this.dens * 500) + 70;
+        that.timeout = setTimeout(that.play, this.interval);
+
+    }
+    this.play();
+}
+
+
+//stop method
+voice.prototype.stop = function () {
+    clearTimeout(this.timeout);
+}
+
+
+
+
+
+//the grain class
+function playgrain(positionx, positiony) {
+
+    var len;
+    var that = this; //for scope issues
+    var now = ctx.currentTime; //update the time value
+    //create the source
+    this.grain = ctx.createBufferSource();
+    this.grain.buffer = audioBuffer;
+    len = this.grain.buffer.duration;
+    //create the gain for enveloping
+    this.contour = ctx.createGain();
+
     /*
-    if (rate > 400) {
-        frate = 100;
-    } else {
-        frate = rate;
+    //experimenting with adding a panner node - not all the grains will be panned for better performance
+    var yes = parseInt(rand(3),10);
+    if( yes === 1){
+        this.panner = context.createPanner();
+        this.panner.panningModel = "equalpower";
+        this.panner.distanceModel = "linear";
+        this.panner.setPosition(p.random(pan * -1,pan),0,0);
+        //connections
+        this.source.connect(this.panner);
+        this.panner.connect(this.gain);
+    }else{
+        this.source.connect(this.gain);
     }
     */
-    //    frate = posX;
+
+    this.contour.connect(master);
+
+    this.grain.connect(this.contour);
+
+    //update the position and calcuate the offset
+    this.positionx = positionx;
+    this.offset = this.positionx * (len / windowWidth); //pixels to seconds
+
+    //update and calculate the amplitude
+    this.positiony = positiony;
+    this.amp = this.positiony / windowHeight;
+    this.amp = map(this.amp, 0.0, 1.0, 1.0, 0.0);
+
+    this.grain.playbackRate.value = this.grain.playbackRate.value * transpose;
+    //this.grain.playbackRate.value = transpose;
+
+    this.spread = spread;
+
+    this.randomoffset = (Math.random() * this.spread) - (this.spread / 2); //in seconds
+    ///envelope
+    //  grain.start(ctx.currentTime, offset);
+    this.grain.start(ctx.currentTime, Math.max(0.0, this.offset + this.randomoffset)); //parameters (when,offset,duration)
+    this.contour.gain.setValueAtTime(0.0, ctx.currentTime);
+    this.contour.gain.linearRampToValueAtTime(this.amp, ctx.currentTime + attack);
+    this.contour.gain.linearRampToValueAtTime(0.0, ctx.currentTime + (attack + release));
 
 
-    //    frate = rate;
-    //    density = rate;
-    //        PARAMS.density = rate;
-    frameRate(density);
+    console.log("playgrain: " + attack + " " + release + " " + this.amp + " " + this.offset + " " + density);
+
+    //garbage collection
+    this.grain.stop(ctx.currentTime + attack + release + 0.1);
+    var tms = (attack + release) * 1000; //calculate the time in miliseconds
+    setTimeout(function () {
+        that.contour.disconnect();
+        /*
+        if (yes === 1) {
+            that.panner.disconnect();
+        }
+        */
+    }, tms + 200);
+
 }
-}
+
+
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -1356,13 +1637,13 @@ function bufferSwitch(input) {
     var getSound = new XMLHttpRequest();
     console.log("in buffer switch " + input);
     if (input == 0) {
-        getSound.open("get", "samples/audio/birdsnearwater.wav", true);
+        getSound.open("get", "samples/audio/birdsnearwater.mp3", true);
     }
     else if (input == 1) {
-        getSound.open("get", "samples/audio/riverwater.wav", true);
+        getSound.open("get", "samples/audio/riverwater.mp3", true);
     }
     else if (input == 2) {
-        getSound.open("get", "samples/audio/treebark.wav", true);
+        getSound.open("get", "samples/audio/treebark.mp3", true);
     }
     else {
         //nothing
