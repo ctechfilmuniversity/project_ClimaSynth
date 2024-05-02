@@ -1356,13 +1356,13 @@ function bufferSwitch(input) {
     var getSound = new XMLHttpRequest();
     console.log("in buffer switch " + input);
     if (input == 0) {
-        getSound.open("get", "samples/audio/birdsnearwater.wav", true);
+        getSound.open("get", "samples/audio/birdsnearwater.mp3", true);
     }
     else if (input == 1) {
-        getSound.open("get", "samples/audio/riverwater.wav", true);
+        getSound.open("get", "samples/audio/riverwater.mp3", true);
     }
     else if (input == 2) {
-        getSound.open("get", "samples/audio/treebark.wav", true);
+        getSound.open("get", "samples/audio/treebark.mp3", true);
     }
     else {
         //nothing
