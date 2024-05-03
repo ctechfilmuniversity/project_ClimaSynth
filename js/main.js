@@ -29,25 +29,25 @@ var pitch = parseFloat(PARAMS.pitch.toFixed(1));
 
 var areas = parseFloat(PARAMS.areas);
 
-var dens_factor_val = 500;
-var dens_offset_val = 30;
+var dens_factor_val = 20;
+var dens_offset_val = 10;
 
 var dens_factor = {
     'dense': 30,
-    'medium': 70,
-    'default': 1500
+    'medium': 50,
+    'default': 520
 };
 
 var dens_offset = {
-    'dense': 10,
+    'dense': 15,
     'medium': 30,
-    'default': 10
+    'default': 50
 };
 
 var dense_params_river = {
     attack: 0.7,
     decay: 0.8,
-    density: 90,
+    density: 0.99,
     delay: 0.3,
     feedback: 0.2,
     pitch: 9
@@ -57,7 +57,7 @@ var dense_params_river = {
 var default_params_river = {
     attack: 0.65,
     decay: 0.55,
-    density: 1,
+    density: 0,
     delay: 0.1,
     feedback: 0.1,
     pitch: 1
@@ -67,7 +67,7 @@ var default_params_river = {
 var medium_params_river = {
     attack: 0.24,
     decay: 0.26,
-    density: 90,
+    density: 0.65,
     delay: 0.4,
     feedback: 0.4,
     pitch: 4.72
@@ -517,7 +517,7 @@ for (var i = 0; i < clus_colors.length; i++) {
 
             for (var i = 0; i < areas; i++) {
 
-                console.log("number of centroids " + areas);
+                //                console.log("number of centroids " + areas);
 
 
                 var w = map(closest[i], closest[7], 0, 0, 1);
@@ -528,7 +528,7 @@ for (var i = 0; i < clus_colors.length; i++) {
 
 
                 if (cur_cl.clustertype['dense'] && cur_cl.clustertype['medium']) {
-                    console.log("dense & medium   " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                    console.log("dense & medium   " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += dense_params_river['attack'] * w;
                     if ('densemedium' in clus_map) {
                         clus_map['densemedium']++;
@@ -539,7 +539,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     keys.push('densemedium');
                 }
                 else if (cur_cl.clustertype['dense'] && cur_cl.clustertype['default']) {
-                    console.log("dense & default  " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                    console.log("dense & default  " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += dense_params_river['attack'] * w;
                     if ('densedefault' in clus_map) {
                         clus_map['densedefault']++;
@@ -550,7 +550,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     keys.push('densedefault');
                 }
                 else if (cur_cl.clustertype['medium'] && cur_cl.clustertype['default']) {
-                    console.log("medium & default " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                    console.log("medium & default " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += medium_params_river['attack'] * w;
                     if ('mediumdefault' in clus_map) {
                         clus_map['mediumdefault']++;
@@ -561,7 +561,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     keys.push('mediumdefault');
                 }
                 else if (cur_cl.clustertype['dense']) {
-                    console.log("dense            " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                    console.log("dense            " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += dense_params_river['attack'] * w;
                     if ('dense' in clus_map) {
                         clus_map['dense']++;
@@ -572,7 +572,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     keys.push('dense');
                 }
                 else if (cur_cl.clustertype['medium']) {
-                    console.log("medium           " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                   console.log("medium           " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += medium_params_river['attack'] * w;
                     if ('medium' in clus_map) {
                         clus_map['medium']++;
@@ -583,7 +583,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     keys.push('medium');
                 }
                 else {
-                    console.log("default          " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
+                    //                    console.log("default          " + "closest i " + closest[i] + " max closest " + closest[100] + " weight " + w);
                     new_att += default_params_river['attack'] * w;
                     if ('default' in clus_map) {
                         clus_map['default']++;
@@ -705,7 +705,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     fb = parseFloat(fb0.x.toFixed(2));
                     pitch = parseFloat(pitch0.x.toFixed(2));
 
-                    /*
+/*
                     var dens_f0 = createVector(dens_factor_val, 0);
                     var dens_o0 = createVector(dens_offset_val, 0);
                     var dens_f1 = createVector(dens_factor[domkey], 0);
@@ -718,20 +718,24 @@ for (var i = 0; i < clus_colors.length; i++) {
                     dens_offset_val = parseFloat(dens_o0.x.toFixed(2));
 */
 
+                    dens_factor_val = dens_factor[domkey];
+                    dens_offset_val = dens_factor[domkey];
+
+
                     PARAMS.density = density;
                     PARAMS.attack = att;
                     PARAMS.decay = dec;
-                    console.log(" new att value " + att + " " + dec + " " + density);
+                    //                    console.log(" new att value " + att + " " + dec + " " + density);
                 }
-                console.log("current attack time " + att);
-                console.log("weighted att of centroids " + new_att);
+                //                console.log("current attack time " + att);
+                //                console.log("weighted att of centroids " + new_att);
 
                 //   att = att + (new_att/posX);
                 //   console.log("new attack time " +att);
 
                 //        if (density < 20) {
-                density = map(density, 1, 100, 0, 1);
-                console.log("density " + density);
+                //        density = map(density, 1, 100, 1, 0);
+                console.log("density num key 1 " + density);
                 if (voicesmono.length == 0) {
                     console.log("create a new voice");
                     var v = new voice_main();
@@ -801,14 +805,18 @@ for (var i = 0; i < clus_colors.length; i++) {
                         dens_offset_val = parseFloat(dens_o0.x.toFixed(2));
 */
 
+
+                        dens_factor_val = dens_factor[domkey];
+                        dens_offset_val = dens_factor[domkey];
+
                         PARAMS.density = density;
                         PARAMS.attack = att;
                         PARAMS.decay = dec;
-                        console.log(" new att value " + att + " " + dec + " " + density);
+                        //                        console.log(" new att value " + att + " " + dec + " " + density);
 
                         //        if (density < 20) {
-                        density = map(density, 1, 100, 0, 1);
-                        console.log("density " + density);
+                        //       density = map(density, 1, 100, 0, 1);
+                        console.log("density dense and default avg > 0.5 " + density);
                         if (voicesmono.length == 0) {
                             console.log("create a new voice");
                             var v = new voice_main();
@@ -876,14 +884,17 @@ for (var i = 0; i < clus_colors.length; i++) {
                         dens_offset_val = parseFloat(dens_o0.x.toFixed(2));
 */
 
+                        dens_factor_val = dens_factor[domkey];
+                        dens_offset_val = dens_factor[domkey];
+
                         PARAMS.density = density;
                         PARAMS.attack = att;
                         PARAMS.decay = dec;
-                        console.log(" new att value " + att + " " + dec + " " + density);
+                        //                        console.log(" new att value " + att + " " + dec + " " + density);
 
                         //        if (density < 20) {
-                        density = map(density, 1, 100, 0, 1);
-                        console.log("density " + density);
+                        //         density = map(density, 1, 100, 0, 1);
+                        console.log("density domkey not dense " + density);
                         if (voicesmono.length == 0) {
                             console.log("create a new voice");
                             var v = new voice_main();
@@ -940,7 +951,7 @@ for (var i = 0; i < clus_colors.length; i++) {
                     PARAMS.density = density;
                     PARAMS.attack = att;
                     PARAMS.decay = dec;
-                    console.log(" new att value " + att + " " + dec + " " + density);
+                    //                    console.log(" new att value " + att + " " + dec + " " + density);
 
 
 
@@ -957,11 +968,12 @@ for (var i = 0; i < clus_colors.length; i++) {
                     dens_offset_val = parseFloat(dens_o0.x.toFixed(2));
 */
 
-
+                    dens_factor_val = dens_factor[domkey];
+                    dens_offset_val = dens_factor[domkey];
 
                     //        if (density < 20) {
-                    density = map(density, 1, 100, 0, 1);
-                    console.log("density " + density);
+                    //          density = map(density, 1, 100, 0, 1);
+                    console.log("density avg weights < 0.5 " + density);
                     if (voicesmono.length == 0) {
                         console.log("create a new voice");
                         var v = new voice_main();
@@ -1254,46 +1266,56 @@ function graingenerator_main(positionx, positiony) {
     console.log("in grain generator");
 
     var grain = ctx.createBufferSource();
-    grain.buffer = audioBuffer;
-    //create the gain for enveloping
+
     var contour = ctx.createGain();
 
     // add a feedback delay to the grain
     var delnode = ctx.createDelay();
     delnode.delayTime.value = del;
 
-   
-
     var feedbnode = ctx.createGain();
     feedbnode.gain.value = fb;
 
+    contour.gain.setValueAtTime(0.0, ctx.currentTime);
+    contour.gain.linearRampToValueAtTime(0.5 * rand(0.2,1), ctx.currentTime + att);
+    contour.gain.linearRampToValueAtTime(0, ctx.currentTime + (att + dec)+0.1);
+
+
     delnode.connect(feedbnode);
     feedbnode.connect(delnode);
+ 
     contour.connect(delnode);
+    contour.connect(master);
     delnode.connect(master);
 
-  
-    contour.connect(master);
 
-    grain.connect(contour);
 
+    grain.buffer = audioBuffer;
+
+
+    randval = rand(0, spread);
 
     //update the position and calcuate the offset
     var len = grain.buffer.duration;
-    var offset = len * (positionx / windowWidth); //pixels to seconds
+
+    var offset = len * (positionx / windowWidth) + randval; //pixels to seconds
+    
 
     //update and calculate the amplitude
-    amp = positiony / windowHeight;
-    amp = map(amp, 0.0, 1.0, 1.0, 0.0);
+  
+    //   amp = positiony / windowHeight;
+    //   amp = map(amp, 0.0, 1.0, 1.0, 0.0);
 
+//    var gRate = pitch;
+//    grain.playbackRate.value = gRate;
     grain.playbackRate.value = grain.playbackRate.value * pitch; // transpose pitch
 
-    randomoffset = (Math.random() * spread) - (spread / 2); //in seconds
+    grain.connect(contour);
 
-    grain.start(ctx.currentTime, Math.max(0.0, offset + randomoffset));
-    contour.gain.setValueAtTime(0.0, ctx.currentTime);
-    contour.gain.linearRampToValueAtTime(amp, ctx.currentTime + att);
-    contour.gain.linearRampToValueAtTime(0.0, ctx.currentTime + (att + dec));
+ //   randomoffset = (Math.random() * spread) - (spread / 2); //in seconds
+
+   // grain.start(ctx.currentTime, Math.max(0.0, offset + randomoffset));
+   grain.start(ctx.currentTime, offset);
     grain.stop(ctx.currentTime + att + dec + 0.1);
 
 
@@ -1655,7 +1677,7 @@ function grains(pos, pitch) {
 
     var grain = ctx.createBufferSource();
     var contour = ctx.createGain();
-    var verbLevel = ctx.createGain();
+ //   var verbLevel = ctx.createGain();
     var len, factor, position, randFactor;
 
 
@@ -1678,7 +1700,7 @@ function grains(pos, pitch) {
     // delay.connect(master);
 
     contour.connect(delay);
-    contour.connect(verbLevel);
+ //   contour.connect(verbLevel);
     contour.connect(master);
     delay.connect(master);
 
