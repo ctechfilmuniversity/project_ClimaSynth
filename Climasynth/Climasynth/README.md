@@ -6,6 +6,7 @@ The research and development was curated by prof. Angela Brennecke, and hosted a
 # Design 
 
 ## Prerequisites
+
 - A Creator creates Content in the form of synthesis Parameters presets. Content is divided in the various climate change Scenarios  (e.g. drought, biodiversity change, flood etc)
 - A Listener explores the Content as sonic representations of climate change scenarios. They can switch between different scenarios. 
 - User's environment is as inclusive es possible. The instrument is easy to pick up and lay with and doesn't require any specific technical knowledge to do so. 
