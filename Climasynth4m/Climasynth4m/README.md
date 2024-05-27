@@ -194,9 +194,9 @@ CLIMASYNTH4M derives from Danylo's earlier development called NEBULIZER built in
 
 Max has two families of objects for creating poly-instances: poly. and mc. In an essence, they wrap multiple instances of most common classes operators and allow to address inputs and parameters of each instance individually by, usually, just sending an index of that instance alongside the value. 
 
-The problem though, that RNBO handles this messaging differently. Instead of a pair of numbers, it takes a string identifier in the format "poly/[voice]/[parameter]". So, each time a host program, be that Max, or JavaScript wants to set an individual parameter value in a given generator instance, they have to perform several string operations with parses and concats. As opposed to just sending two values in a normal poly. or mc. setup.
+The problem though was that RNBO handles this messaging differently. Instead of a pair of numbers, it takes a string identifier in the format "poly/[voice]/[parameter]". So, each time a host program, be that Max or JavaScript wants to set an individual parameter value in a given generator instance, they have to perform several string operations with parses and concats as opposed to just sending two values in a normal poly. or mc. setup.
 
-Back to the CLIMASYNTH4M, where we have 280 Parameters all changing every frame the RBFI Cursor moves - we had a tight bottleneck. With our voice count and parameter space, RNBO-driven version of CLIMASYNTH4M had low framerate and clicking sound. The web prototype was even worse. 
+Back to the CLIMASYNTH4M, where we have 280 Parameters all changing every frame the RBFI Cursor moves - we had a tight bottleneck. With our voice count and parameter space, RNBO-driven version of CLIMASYNTH4M had low framerate and clicking sound. The RNBO web prototype was did not give the desired result. 
 
 With that given, we considered wrapping both User and Creator modes into one standalone executable. 
 
