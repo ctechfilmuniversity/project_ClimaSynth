@@ -2,7 +2,7 @@
 
 CLIMASYNTH4M is a first prototype of a MaxMSP standalone application, originally developed by Danylo Okulov for the [Listening to Climate Change](https://www.filmuniversitaet.de/forschung-transfer/forschung/projekte/projektseite/detail/listening-to-climate-change-the-role-of-sound-and-new-media-formats-for-enhancing-environmental-perception) research project lead by Dr. Eleni-Ira Panourgia. The application aims to communicate climate change scenarios to a listener, by transforming sound textures with granular synthesis. 
 
-The research and development was curated by Prof. Dr. Angela Brennecke, and hosted at Spatial Audio Lab of the [Creative Exchange (CX) Studio](https://www.filmuniversitaet.de/filmuni/institute/cxstudio) at Film University Babelsberg KONRAD WOLF.
+The research and development was supported by Prof. Dr. Angela Brennecke, and hosted at Spatial Audio Lab of the [Creative Exchange (CX) Studio](https://www.filmuniversitaet.de/filmuni/institute/cxstudio) at Film University Babelsberg KONRAD WOLF.
 # Design 
 
 ## Prerequisites
