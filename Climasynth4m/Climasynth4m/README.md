@@ -66,20 +66,20 @@ The synthesis algorithm of a single instance looks as follows:
 
 Many parameters are VARYING across 64 grain generator instances. This creates a huge parameters space of around 280 variables total. 
 
-With one of main prerequisites of the instrument - being inclusive for users, but also allowing a handy content-authoring on Creator's side - CLIMASYNTH has two Environments built into it: User and Creator. One has the parameter space as compressed as possible, while the other - almost fully directly accessible.
+With one of main prerequisites of the instrument - being inclusive for users, but also allowing a handy content-authoring on Creator's side - CLIMASYNTH4M has two Environments built into it: User and Creator. One has the parameter space as compressed as possible, while the other - almost fully directly accessible.
 
 ### UI and Parameter space optimisation
 
 Being driven by so many Parameters, the synth as is does not comply with a prerequisite of being accessible to wide inclusive User base. Even for an experienced sound designer - parameter space needs to be optimized and laid out in a clear readable way. 
 As implied, the Instrument had to implement two modes of  interaction: User and Creator.
 High- and low-level, respectively. 
-These modes are reflected in the corresponding layouts. But first, let's have a look at the key feature of CLIMASYNTH, which bridges the gap between the two modes and makes the instrument 'playable' at all. 
+These modes are reflected in the corresponding layouts. But first, let's have a look at the key feature of CLIMASYNTH4M, which bridges the gap between the two modes and makes the instrument 'playable' at all. 
 #### RBFI 
 The centrepiece of the UI is the Radial Basis Function Interpolation (RBFI) object from CNMAT Externals Max/MSP library.
 It's a 2D plane, containing n-amount of deliberately placed Points, and a single Cursor. The object returns an array of Weights, calculated with radial basis function from distances between the Cursor and each Point.
 Weights are essentially the interpolation values, allowing calculation of the weighted sum of any other set of data.  
 
-So, CLIMASYNTH's core workflow is pre-composing the Presets of Parameters, saving them as  Points on the RBFI-object plane and then performing on the said plane, causing the interpolation  between pre-made Presets
+So, CLIMASYNTH4M's core workflow is pre-composing the Presets of Parameters, saving them as  Points on the RBFI-object plane and then performing on the said plane, causing the interpolation  between pre-made Presets
 
 This method allows for bridging the gap between a Creator's , that utilizes parameter space on the lowest level to compose Contents (sounds) they want, and a User with presumably no idea of granular synthesis, just playing with the Instrument by placing a cursor on a 2D plane. 
 
@@ -91,7 +91,7 @@ Besides that, CNMAT's RBFI object has pleasant editable visual rendering of Poin
 ![Creator Environment Screenshot](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/creatorView.png)
 
 Creator Environment (CE) is the UI-Layout that provides access to all the parameters needed to create a Project with Scenes - containers for Scenarios - in the form of RBFI plane, filled with Points-Presets.
-_Detailed info on the data hierarchy of CLIMASYNTH's Projects in the section PROJECT DATA STRUCTURE._
+_Detailed info on the data hierarchy of CLIMASYNTH4M's Projects in the section PROJECT DATA STRUCTURE._
 
 CE is divided into following tabs: 
     
@@ -122,7 +122,7 @@ As CE already contains the User's main 'playground' - the RBFI plane, switching 
 
 ### Project Data Structure
 
-CLIMASYNTH's data hierarchy looks as follows: 
+CLIMASYNTH4M's data hierarchy looks as follows: 
     
     parent->child
 `Project`->`Scenes[ ]`->`Presets[ ]`->`Parameters[ ]`
