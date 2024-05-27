@@ -1,29 +1,30 @@
 # Background
 
-CLIMASYNTH is a standalone granular synthesizer application, originally developed by Danylo Okulov for the "Listening to Climate Change" research project lead by Eleni-Ira Panourgia. The project aims to communicate climate change scenarios to a listener, by transforming sound textures with granular synthesis. 
+CLIMASYNTH4M is a first prototype of a MaxMSP standalone application, originally developed by Danylo Okulov for the [Listening to Climate Change](https://www.filmuniversitaet.de/forschung-transfer/forschung/projekte/projektseite/detail/listening-to-climate-change-the-role-of-sound-and-new-media-formats-for-enhancing-environmental-perception) research project lead by Dr. Eleni-Ira Panourgia. The application aims to communicate climate change scenarios to a listener, by transforming sound textures with granular synthesis. 
 
-The research and development was curated by prof. Angela Brennecke, and hosted at Spatial Audio Lab of the Creative Exchange Studio initiative of Filmuniversitaet Babelsberg KONRAD WOLF
+The research and development was curated by Prof. Dr. Angela Brennecke, and hosted at Spatial Audio Lab of the [Creative Exchange (CX) Studio](https://www.filmuniversitaet.de/filmuni/institute/cxstudio) at Film University Babelsberg KONRAD WOLF.
 # Design 
 
 ## Prerequisites
 
-- A Creator creates Content in the form of synthesis Parameters presets. Content is divided in the various climate change Scenarios  (e.g. drought, biodiversity change, flood etc)
+- A Creator creates Content in the form of synthesis Parameters presets. Content is divided in the various climate change Scenarios  (e.g. drought, biodiversity change, etc.)
 - A Listener explores the Content as sonic representations of climate change scenarios. They can switch between different scenarios. 
-- User's environment is as inclusive es possible. The instrument is easy to pick up and lay with and doesn't require any specific technical knowledge to do so. 
+- User's environment is as inclusive as possible. The instrument is easy to pick up and play with without any specific technical knowledge required. 
+- The App uses granular synthesis to transform field recording sound samples into textures that express environmental change.
 
-- The App utilizes granular synthesis to transform input sound samples into a completely different textures that depict an environmental change
 ## Implementation
 
-CLIMASYNTH is written in Max 8 programming language and built as a standalone executable.  
+CLIMASYNTH4M is written in Max 8 programming language and built as a standalone executable. 
+ 
 ### Synthesis
 
-At the heart of CLIMASYNTH is a standard grain generator. 
-![CLIMASYNTH's grain generator patcher: the e main sound synthesis module](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/grainGenerator.png)
+At the heart of CLIMASYNTH4M is a standard grain generator. 
+![CLIMASYNTH4M's grain generator patcher: the e main sound synthesis module](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/grainGenerator.png)
 
 Grains are very short pieces of sound sample, played one after another and windowed by a windowing function. Typically, the grain length in granular synthesis lies under / around 100 ms. 
-Though, in CLIMASYNTH we stick to the maximum of 2000 ms of grain length. 
+Though, in CLIMASYNTH4M we have a maximum of 2000 ms of grain length. 
 
-What defines CLIMASYNTH's sound, is that it's running 64 mostly unparalleled instances of the grain generator. This allows  creating a highly dense granular clouds (a.k.a. nebulas), effectively 'smearing' the input sound into a texture. 
+What defines CLIMASYNTH4M's sound, is that it's running 64 mostly unparalleled instances of the grain generator. This allows  creating a highly dense granular clouds (a.k.a. nebulas), effectively 'smearing' the input sound into a texture. 
 
 The synthesis algorithm of a single instance looks as follows:
 
@@ -39,7 +40,7 @@ The synthesis algorithm of a single instance looks as follows:
 
 ### Parameter space
 
-	[u]  - parameter is UNIFORM  to all grain generator instances
+	[u] - parameter is UNIFORM  to all grain generator instances
 	[v] - parameter is VARYING between instances 
 	[g] - parameter drives a GROUP of grain generator instances
 
@@ -150,55 +151,51 @@ Parameters - values for individual Parameter variables
  - For the sake of simplicity, the Recorder doesn't provide naming functionality for files, but names them with current system time upon saving
 
 
-# Development Process / Techniques Used
+# Development Process / Techniques Used  
 
-### Where it Failed
-There is one important point, specifically left out of the Prerequisites section, in order to let re documentation concentrate on what the development process has succeeded in, rather then leaving the reader wondering, why is this feature doesn't show up for the whole time up until now. 
-That point being: the end platform initially considered was a WEB-Audio app.  
-
-With all the features Max 8 has to offer nowadays, this is where, in combination with specific challenges of CLIMASYNTH setup, it failed. 
-
-Developed by Cyling'74, Max is a very popular programming environment in the world of creating content. The visual programming workflow and huge amount of built-in handy objects for synthesis, logic, UI, scripting etc. speed up the development process a lot, also allowing for quick experimentation. 
-The big drawback of Max though has also been it's export options. Basically before version 8, the only viable option to export anything but standalone apps from Max has been MaxForLive plug-ins, supported exclusively by Ableton Live DAW. Therefore it was a huge breakthrough, as  with Max 8, C'74 have presented an extension to Max, called RNBO, which is capable of exporting the patches to a number of popular formats like VST3 and Web Audio Devices.
-RNBO is a Max-like language, which patches Max can host as objects. 
-
-CLIMASYNTH derives from Danylo's earlier development called NEBULIZER,  built in Max 7. It's where CLIMASYNTH gets it's multiple generator instances technique from. 
- So, the plan was to expand on NEBULIZER's core, implement RBF interpolation on top of it, along with save/load system, rebuild the core synthesis in RNBO and wrap it into the Web page for the end User, leaving the Max Standalone exclusively for Creator to compose Content with. 
-
-Max has two families of objects for creating poly-instances: poly. and mc.. In an essence, they wrap multiple instances of most common classes operators and allow to address inputs and parameters of each instance individually by, usually, just sending an index of that instance alongside the value. 
-
-The problem though, that RNBO handles this messaging differently. Instead of a pair of numbers, it takes a string identifier in the format  "poly/[voice]/[parameter]". So, each time a host program, be that Max, or JavaScript wants to set an individual parameter value in a given generator instance, they have to perform several string operations with parses and concats. As opposed to just sending two values in a normal poly. or mc. setup.
-
-Back to the CLIMASYNTH, where we have 280 Parameters all changing every frame the RBFI Cursor moves - we had a tight bottleneck. With our voice count and parameter space, RNBO-driven version of CLIMASYNTH had low framerate and clicking sound. The web prototype was even worse. 
-
-With that given,  we considered wrapping both User and Creator modes into one standalone executable.   
-
-
-### Where it Succeeded
+### What Was Achieved
 Apart from a great starting point for creative programming, Max has a reputation of a solid fun experimentation platform, rather then the end-product development suite. RNBO's call was to change this, and although it has failed in our case, it's a huge leap Max and the community is happy C'74 has finally went down that road. 
-Nonetheless, with CLIMASYNTH's example it is obvious, that the production of standalone programs in Max is at least viable. Many specific features a standalone requires: animated UI, format supports, data management etc. have dedicated objects or workarounds.   
+Nonetheless, with CLIMASYNTH4M's example it is obvious, that the production of standalone programs in Max is at least viable. Many specific features a standalone requires: animated UI, format supports, data management etc. have dedicated objects or workarounds.   
 
-Below are some highlights of techniques used in CLIMASYNTH. They are highly recommended to people, seeking to create more complex programs in Max,  but are also really inspiring to use:
+Below are some highlights of techniques used in CLIMASYNTH4M. They are highly recommended to people, seeking to create more complex programs in Max, but are also really inspiring to use:
 - Subpatchers and B-Patchers 
 These are the two objects that allow for code abstraction in Max. Subpatcher ("p" object in Max) just packs a piece of code in one object box with inputs and outputs. B-Patcher (bpatcher) does the same, but with displayng the packed patcher as a graphics window, instead of a simple object box. 
 
-All the UI tabs in CLIMASYNTH are b-patchers. This has enabled UI-Layout development to be modular, and kept the main patcher clean 
+All the UI tabs in CLIMASYNTH4M are b-patchers. This has enabled UI-Layout development to be modular, and kept the main patcher clean 
 
 - JS scripting
 The JS object enables scripting in written JavaScript language, with the prior aim of automating the behaviour of Max app and individual patchers. But it is also invaluable, when trying to program more of an "coordinated" algorithm. Say, when a strict execution sequence is needed, or array iterations and/or string operations are involved. 
 JS code in Max is also capable of managing Max objects (creating, deleting, connecting, moving, etc.)
 Of course, the absolute most of JS' features are accessible via patching. But having a feature to code in writing helps to deal with situations, where visual coding quickly becomes a tedium.
 
-In CLIMASYNTH JavaScript objects are used for coordinating a network of objects responsible for Save/Load system. The UI animation is also scripted in js.
+In CLIMASYNTH4M JavaScript objects are used for coordinating a network of objects responsible for Save/Load system. The UI animation is also scripted in js.
 
 - Sample-Precise  audio workflow (gen)
 Gen is a Max patching extension for operation with signals with per-sample execution, instead of per signal vector (a batch of 2^n samples). It proves to be useful in many situations, where normal MSP objects aren't efficient due to their performance. And it also enables coding DSP algorithms 'by hand' with C inside of its Codebox object
-But in CLIMASYNTH, the Pitch Shift and Switch-and-Ramp modules inside of the grain generator are both coded in Gen.   
+But in CLIMASYNTH4M, the Pitch Shift and Switch-and-Ramp modules inside of the grain generator are both coded in Gen.   
 - MC. 
 Standing for "multi-channel", MC. is a wraper for poly-instanced objects in Max. There's an mc. version of almost any basic object box in Max.  
 MC allows individual addressing of instantiated objects, and also provides several handy deviation and randomisation functions, that can be applied to a parameter on all instances.
 Obviously, it is THE feature, that has inspired and enabled CLIMASYNTH's poly-voice architecture.  
 
 
+### What Could Be Improved
+There is one important point, specifically left out of the Prerequisites section, in order to let re documentation concentrate on what the development process has succeeded in, rather then leaving the reader wondering, why is this feature doesn't show up for the whole time up until now. 
+That point being: the end platform initially considered was a web audio app.  
 
+With all the features Max 8 has to offer nowadays, this is where, in combination with specific challenges of CLIMASYNTH4M setup, it failed. 
 
+Developed by Cyling'74, Max is a very popular programming environment in the world of creating content. The visual programming workflow and huge amount of built-in handy objects for synthesis, logic, UI, scripting etc. speed up the development process a lot, also allowing for quick experimentation. 
+The big drawback of Max though has also been it's export options. Basically before version 8, the only viable option to export anything but standalone apps from Max has been MaxForLive plug-ins, supported exclusively by Ableton Live DAW. Therefore it was a huge breakthrough, as with Max 8, C'74 have presented an extension to Max, called RNBO, which is capable of exporting the patches to a number of popular formats like VST3 and Web Audio Devices.
+RNBO is a Max-like language, which patches Max can host as objects. 
+
+CLIMASYNTH4M derives from Danylo's earlier development called NEBULIZER built in Max 7. CLIMASYNTH4M gets its multiple generator instances technique from NEBULIZER. 
+ So, the plan was to expand on NEBULIZER's core, implement RBF interpolation on top of it, along with save/load system, rebuild the core synthesis in RNBO and wrap it into the Web page for the end User, leaving the Max Standalone exclusively for Creator to compose Content with. 
+
+Max has two families of objects for creating poly-instances: poly. and mc. In an essence, they wrap multiple instances of most common classes operators and allow to address inputs and parameters of each instance individually by, usually, just sending an index of that instance alongside the value. 
+
+The problem though, that RNBO handles this messaging differently. Instead of a pair of numbers, it takes a string identifier in the format "poly/[voice]/[parameter]". So, each time a host program, be that Max, or JavaScript wants to set an individual parameter value in a given generator instance, they have to perform several string operations with parses and concats. As opposed to just sending two values in a normal poly. or mc. setup.
+
+Back to the CLIMASYNTH4M, where we have 280 Parameters all changing every frame the RBFI Cursor moves - we had a tight bottleneck. With our voice count and parameter space, RNBO-driven version of CLIMASYNTH4M had low framerate and clicking sound. The web prototype was even worse. 
+
+With that given, we considered wrapping both User and Creator modes into one standalone executable. 
