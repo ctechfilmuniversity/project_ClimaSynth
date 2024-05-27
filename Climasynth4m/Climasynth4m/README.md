@@ -79,7 +79,7 @@ The centrepiece of the UI is the Radial Basis Function Interpolation (RBFI) obje
 It's a 2D plane, containing n-amount of deliberately placed Points, and a single Cursor. The object returns an array of Weights, calculated with radial basis function from distances between the Cursor and each Point.
 Weights are essentially the interpolation values, allowing calculation of the weighted sum of any other set of data.  
 
-So, CLIMASYNTH4M's core workflow is pre-composing the Presets of Parameters, saving them as  Points on the RBFI-object plane and then performing on the said plane, causing the interpolation  between pre-made Presets
+CLIMASYNTH4M's core workflow is pre-composing the Presets of Parameters, saving them as  Points on the RBFI-object plane and then performing on the said plane, causing the interpolation  between pre-made Presets
 
 This method allows for bridging the gap between a Creator's , that utilizes parameter space on the lowest level to compose Contents (sounds) they want, and a User with presumably no idea of granular synthesis, just playing with the Instrument by placing a cursor on a 2D plane. 
 
