@@ -177,7 +177,7 @@ MC allows individual addressing of instantiated objects, and also provides sever
 Obviously, it is THE feature, that has inspired and enabled CLIMASYNTH4M's poly-voice architecture.  
 
 
-### What Could Be Improved
+### What Was Challenging
 There is one important point, specifically left out of the Prerequisites section, in order to let focus on what the development process has succeeded in, rather then leaving the reader wondering, why is this feature doesn't show up for the whole time up until now. 
 That point being: the end platform initially was intended to be developed a web audio app.  
 
