@@ -19,7 +19,7 @@ CLIMASYNTH4M is written in Max 8 programming language and built as a standalone 
 ### Synthesis
 
 At the heart of CLIMASYNTH4M is a standard grain generator. 
-![CLIMASYNTH4M's grain generator patcher: the e main sound synthesis module](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/grainGenerator.png)
+![CLIMASYNTH4M's grain generator patcher: the e main sound synthesis module](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth4m/Climasynth4m/img/grainGenerator.png)
 
 Grains are very short pieces of sound sample, played one after another and windowed by a windowing function. Typically, the grain length in granular synthesis lies under / around 100 ms. 
 Though, in CLIMASYNTH4M we have a maximum of 2000 ms of grain length. 
@@ -88,7 +88,7 @@ As the RBFI plane allows for seamless interpolation between presets, continued t
 Besides that, CNMAT's RBFI object has pleasant editable visual rendering of Points, allowing Creator to set the mood of the given plane to their liking. 
 
 #### Creator Environment
-![Creator Environment Screenshot](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/creatorView.png)
+![Creator Environment Screenshot](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth4m/Climasynth4m/img/creatorView.png)
 
 Creator Environment (CE) is the UI-Layout that provides access to all the parameters needed to create a Project with Scenes - containers for Scenarios - in the form of RBFI plane, filled with Points-Presets.
 _Detailed info on the data hierarchy of CLIMASYNTH4M's Projects in the section PROJECT DATA STRUCTURE._
@@ -118,7 +118,7 @@ CE is divided into following tabs:
 #### User Environment
 As CE already contains the User's main 'playground' - the RBFI plane, switching to the User Environment (UE) is as simple as hiding all the  low-level controls, leaving the User with just Scene selection dropdown menu and the RBFI plane itself.
 
-![User Environment Screenshot](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth/Climasynth/img/userView.png)
+![User Environment Screenshot](https://github.com/ctechfilmuniversity/project_ClimaSynth/blob/main/Climasynth4m/Climasynth4m/img/userView.png)
 
 ### Project Data Structure
 
