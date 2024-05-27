@@ -154,14 +154,12 @@ Parameters - values for individual Parameter variables
 # Development Process / Techniques Used  
 
 ### What Was Achieved
-Apart from a great starting point for creative programming, Max has a reputation of a solid fun experimentation platform, rather then the end-product development suite. RNBO's call was to change this, and although it has failed in our case, it's a huge leap Max and the community is happy C'74 has finally went down that road. 
-Nonetheless, with CLIMASYNTH4M's example it is obvious, that the production of standalone programs in Max is at least viable. Many specific features a standalone requires: animated UI, format supports, data management etc. have dedicated objects or workarounds.   
 
-Below are some highlights of techniques used in CLIMASYNTH4M. They are highly recommended to people, seeking to create more complex programs in Max, but are also really inspiring to use:
+Below are some highlights of techniques used in CLIMASYNTH4M:
 - Subpatchers and B-Patchers 
 These are the two objects that allow for code abstraction in Max. Subpatcher ("p" object in Max) just packs a piece of code in one object box with inputs and outputs. B-Patcher (bpatcher) does the same, but with displayng the packed patcher as a graphics window, instead of a simple object box. 
 
-All the UI tabs in CLIMASYNTH4M are b-patchers. This has enabled UI-Layout development to be modular, and kept the main patcher clean 
+All the UI tabs in CLIMASYNTH4M are b-patchers. This has enabled UI-Layout development to be modular, and kept the main patcher clean. 
 
 - JS scripting
 The JS object enables scripting in written JavaScript language, with the prior aim of automating the behaviour of Max app and individual patchers. But it is also invaluable, when trying to program more of an "coordinated" algorithm. Say, when a strict execution sequence is needed, or array iterations and/or string operations are involved. 
@@ -176,18 +174,20 @@ But in CLIMASYNTH4M, the Pitch Shift and Switch-and-Ramp modules inside of the g
 - MC. 
 Standing for "multi-channel", MC. is a wraper for poly-instanced objects in Max. There's an mc. version of almost any basic object box in Max.  
 MC allows individual addressing of instantiated objects, and also provides several handy deviation and randomisation functions, that can be applied to a parameter on all instances.
-Obviously, it is THE feature, that has inspired and enabled CLIMASYNTH's poly-voice architecture.  
+Obviously, it is THE feature, that has inspired and enabled CLIMASYNTH4M's poly-voice architecture.  
 
 
 ### What Could Be Improved
-There is one important point, specifically left out of the Prerequisites section, in order to let re documentation concentrate on what the development process has succeeded in, rather then leaving the reader wondering, why is this feature doesn't show up for the whole time up until now. 
-That point being: the end platform initially considered was a web audio app.  
+There is one important point, specifically left out of the Prerequisites section, in order to let focus on what the development process has succeeded in, rather then leaving the reader wondering, why is this feature doesn't show up for the whole time up until now. 
+That point being: the end platform initially was intended to be developed a web audio app.  
 
-With all the features Max 8 has to offer nowadays, this is where, in combination with specific challenges of CLIMASYNTH4M setup, it failed. 
+With all the features Max 8 has to offer today, this is where it has been challenging to respond to the specific challenges of the CLIMASYNTH4M setup. 
 
-Developed by Cyling'74, Max is a very popular programming environment in the world of creating content. The visual programming workflow and huge amount of built-in handy objects for synthesis, logic, UI, scripting etc. speed up the development process a lot, also allowing for quick experimentation. 
-The big drawback of Max though has also been it's export options. Basically before version 8, the only viable option to export anything but standalone apps from Max has been MaxForLive plug-ins, supported exclusively by Ableton Live DAW. Therefore it was a huge breakthrough, as with Max 8, C'74 have presented an extension to Max, called RNBO, which is capable of exporting the patches to a number of popular formats like VST3 and Web Audio Devices.
+Developed by Cyling'74, Max is a very popular programming environment. The visual programming workflow and huge amount of built-in objects for synthesis, logic, UI, scripting etc. speed up the development process a lot, also allowing for fast experimentation. 
+Max's export options remain a challenge. Prior to Max's version 8, the only viable option to export anything but standalone apps from Max has been MaxForLive plug-ins, supported exclusively by Ableton Live DAW. Therefore the RNBO extension to Max was a huge breakthrough, which is capable of exporting the patches to a number of popular formats like VST3 and Web Audio Devices.
 RNBO is a Max-like language, which patches Max can host as objects. 
+
+Apart from a great starting point for creative programming, Max has a reputation of a solid fun experimentation platform, rather then the end-product development suite. RNBO's call was to change this, and although it didn't suit our case, it's a huge leap Max and the C'74 community finally made. Nonetheless, with CLIMASYNTH4M's example it is obvious, that the production of standalone programs in Max is at least viable. Many specific features a standalone requires: animated UI, format supports, data management etc. have dedicated objects or workarounds.
 
 CLIMASYNTH4M derives from Danylo's earlier development called NEBULIZER built in Max 7. CLIMASYNTH4M gets its multiple generator instances technique from NEBULIZER. 
  So, the plan was to expand on NEBULIZER's core, implement RBF interpolation on top of it, along with save/load system, rebuild the core synthesis in RNBO and wrap it into the Web page for the end User, leaving the Max Standalone exclusively for Creator to compose Content with. 
@@ -199,3 +199,4 @@ The problem though, that RNBO handles this messaging differently. Instead of a p
 Back to the CLIMASYNTH4M, where we have 280 Parameters all changing every frame the RBFI Cursor moves - we had a tight bottleneck. With our voice count and parameter space, RNBO-driven version of CLIMASYNTH4M had low framerate and clicking sound. The web prototype was even worse. 
 
 With that given, we considered wrapping both User and Creator modes into one standalone executable. 
+
